@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="">
+  <title>Hello World | KeeganJ</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="header">
+      <a href="/">
+        <svg 
+          version="1.0" 
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 139.000000 182.000000"
+          preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(0.000000,182.000000) scale(0.100000,-0.100000)"="none">
+        <path d="M0 910 l0 -910 695 0 695 0 0 910 0 910 -695 0 -695 0 0 -910z m1000
+        714 c0 -3 -159 -173 -354 -378 -194 -204 -376 -396 -404 -426 l-51 -55 -1 433
+        0 432 405 0 c223 0 405 -3 405 -6z m198 -993 l-3 -331 -270 352 c-148 194
+        -270 358 -270 365 0 8 122 145 270 305 l270 291 3 -326 c1 -179 1 -474 0 -656z
+        m-533 106 c72 -94 194 -256 273 -359 l142 -188 -445 0 -445 0 0 186 0 186 168
+        174 c92 95 169 173 172 173 3 0 64 -77 135 -172z"/>
+        </g>
+        </svg>
+      </a>
+      <div class="title">
+        <h2>Keegan Jorgensen</h2>
+        <nav>
+          <a href="/posts/">Posts</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/keeganj">Github</a>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+      
+<h1 class="title">
+  Hello World
+</h1>
+<p class="subtitle">2019-02-24</p>
+<pre style="background-color:#272822;">
+<code class="language-js" data-lang="js"><span style="color:#66d9ef;">setInterval</span><span style="color:#f8f8f2;">(() </span><span style="font-style:italic;color:#66d9ef;">=&gt; </span><span style="color:#f8f8f2;">{
+    </span><span style="font-style:italic;color:#66d9ef;">const </span><span style="color:#f8f8f2;">post </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getBlogPost</span><span style="color:#f8f8f2;">();
+    blog.</span><span style="color:#66d9ef;">write</span><span style="color:#f8f8f2;">(post);
+}, </span><span style="color:#ae81ff;">1000</span><span style="color:#f8f8f2;">);
+
+</span><span style="font-style:italic;color:#66d9ef;">function </span><span style="color:#a6e22e;">getBlogPost</span><span style="color:#f8f8f2;">() {
+    </span><span style="color:#75715e;">// TODO
+</span><span style="color:#f8f8f2;">}
+</span></code></pre>
+<p>Welcome to my blog! Not entirely sure what this should be about yet, but I had a free Sunday afternoon and figured it was about time I put together a site.</p>
+<p>I doubt that I'll be making any major posts to this site any time soon, but to kick things off I thought it may be helpful to discuss how the site was made in thanks to the excellent open source tools I used.</p>
+<ul>
+<li><a href="https://hexo.io/"><strong>Hexo</strong></a> - Excellent blogging framework that uses a node js stack. It's not the simplest program out there, but I'm familiar with the tech stack and can customize it just deeply enough to make it my own.</li>
+<li><a href="https://github.com/probberechts/hexo-theme-cactus"><strong>Cactus</strong></a> - Hexo theme with a few color options. I simplified some of the layouts and changed some colors, but what remains is mostly faithful to the original design. Thanks to <a href="https://github.com/probberechts">Pieter Robberechts</a> for the excellent design.</li>
+<li><a href="https://pages.github.com/"><strong>Github Pages</strong></a> - Simple and free static site hosting straight from Github. Hexo has the ability to deploy the rendered site via git, and Github is more than willing to accept pushes to deploy.</li>
+<li><a href="https://www.npmjs.com/package/hexo-generator-search"><strong>hexo-generator-search</strong></a> - A local search generator for hexo that makes instant searches work on a static site. Props for the smooth integration with Cactus.</li>
+</ul>
+
+
+    </div>
+  </section>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://keeganj.com/sitemap.xml

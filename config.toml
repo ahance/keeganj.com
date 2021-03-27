@@ -1,0 +1,16 @@
+base_url = "https://keeganj.com"
+title = "KeeganJ"
+description = "Keegan Jorgensen - Code, projects, and thoughts."
+default_language = "en"
+
+generate_feed = true
+compile_sass = true
+build_search_index = false
+output_dir = "docs"
+
+[markdown]
+highlight_code = true
+highlight_theme = "monokai"
+
+[extra]
+# Put all your custom variables here
