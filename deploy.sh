@@ -1,3 +1,6 @@
 #!/bin/sh
 
-zola build && git push
+zola build
+git add .
+git commit -m "$1"
+git push
