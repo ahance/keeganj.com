@@ -150,7 +150,15 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 		<updated>2019-02-24T00:00:00+00:00</updated>
 		<link href="https://keeganj.com/posts/hello-world/" type="text/html"/>
 		<id>https://keeganj.com/posts/hello-world/</id>
-		<content type="html">&lt;pre style=&quot;background-color:#272822;&quot;&gt;
+		<content type="html">&lt;p&gt;Welcome to my blog! Not entirely sure what this should be about yet, but I had a free Sunday afternoon and figured it was about time I put together a site.&lt;&#x2F;p&gt;
+&lt;p&gt;I doubt that I&#x27;ll be making any major posts to this site any time soon, but to kick things off I thought it may be helpful to discuss how the site was made in thanks to the excellent open source tools I used.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;hexo.io&#x2F;&quot;&gt;&lt;strong&gt;Hexo&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - Excellent blogging framework that uses a node js stack. It&#x27;s not the simplest program out there, but I&#x27;m familiar with the tech stack and can customize it just deeply enough to make it my own.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;probberechts&#x2F;hexo-theme-cactus&quot;&gt;&lt;strong&gt;Cactus&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - Hexo theme with a few color options. I simplified some of the layouts and changed some colors, but what remains is mostly faithful to the original design. Thanks to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;probberechts&quot;&gt;Pieter Robberechts&lt;&#x2F;a&gt; for the excellent design.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;pages.github.com&#x2F;&quot;&gt;&lt;strong&gt;Github Pages&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - Simple and free static site hosting straight from Github. Hexo has the ability to deploy the rendered site via git, and Github is more than willing to accept pushes to deploy.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;hexo-generator-search&quot;&gt;&lt;strong&gt;hexo-generator-search&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - A local search generator for hexo that makes instant searches work on a static site. Props for the smooth integration with Cactus.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre style=&quot;background-color:#272822;&quot;&gt;
 &lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;setInterval&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(() &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;{
     &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;post &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;getBlogPost&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;();
     blog.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(post);
@@ -159,15 +167,6 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;getBlogPost&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;() {
     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;&#x2F;&#x2F; TODO
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;}
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Welcome to my blog! Not entirely sure what this should be about yet, but I had a free Sunday afternoon and figured it was about time I put together a site.&lt;&#x2F;p&gt;
-&lt;p&gt;I doubt that I&#x27;ll be making any major posts to this site any time soon, but to kick things off I thought it may be helpful to discuss how the site was made in thanks to the excellent open source tools I used.&lt;&#x2F;p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;hexo.io&#x2F;&quot;&gt;&lt;strong&gt;Hexo&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - Excellent blogging framework that uses a node js stack. It&#x27;s not the simplest program out there, but I&#x27;m familiar with the tech stack and can customize it just deeply enough to make it my own.&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;probberechts&#x2F;hexo-theme-cactus&quot;&gt;&lt;strong&gt;Cactus&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - Hexo theme with a few color options. I simplified some of the layouts and changed some colors, but what remains is mostly faithful to the original design. Thanks to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;probberechts&quot;&gt;Pieter Robberechts&lt;&#x2F;a&gt; for the excellent design.&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;pages.github.com&#x2F;&quot;&gt;&lt;strong&gt;Github Pages&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - Simple and free static site hosting straight from Github. Hexo has the ability to deploy the rendered site via git, and Github is more than willing to accept pushes to deploy.&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;hexo-generator-search&quot;&gt;&lt;strong&gt;hexo-generator-search&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - A local search generator for hexo that makes instant searches work on a static site. Props for the smooth integration with Cactus.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-</content>
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
 	</entry>
 </feed>
