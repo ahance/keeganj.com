@@ -3,5 +3,5 @@
 {% block title %}{{ config.title }}{% endblock title %}
 
 {% block content %}
-<p>Code, projects, and thoughts</p>
+{{ section.content | safe }}
 {% endblock content %}

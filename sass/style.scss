@@ -10,7 +10,7 @@ body {
 
 .section {
   display: table-cell;
-  width: 50rem;
+  width: 40rem;
   padding: 2rem;
 }
 
@@ -168,6 +168,20 @@ a {
 @media print {
   html {
     font-size: 10px;
+  }
+
+  .header {
+    display: none;
+  }
+
+  pre {
+    page-break-inside: avoid;
+  }
+
+  .section {
+    display: table-cell;
+    width: auto;
+    padding: 0;
   }
 
   .zola-anchor {
