@@ -10,4 +10,14 @@
 </h1>
 <p class="subtitle">{{ page.date }}</p>
 {{ page.content | safe }}
+
+<footer>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
+    <a href="https://github.com/keeganj" target="blank" rel="noopener">Github</a>
+  </nav>
+  <p>© {{  now() | date(format="%Y") }} Keegan Jorgensen</p>
+</footer>
 {% endblock content %}

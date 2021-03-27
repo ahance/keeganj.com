@@ -10,8 +10,8 @@ body {
 
 .section {
   display: table-cell;
-  width: 40rem;
-  padding: 2rem;
+  width: 42rem;
+  padding: 3rem;
 }
 
 .header {
@@ -19,7 +19,7 @@ body {
   margin-bottom: 4rem;
 
   svg {
-    height: 3.6rem;
+    height: 3.3rem;
     margin: 0.4rem 1.5rem 0 0;
     fill: black;
   }
@@ -28,20 +28,20 @@ body {
     font-weight: 500;
     margin: 0 0 1rem 0;
   }
+}
 
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 0;
-  
-    a {
-      border-left: 2px dotted $gray;
-      padding: 0 1rem 0 1rem;
+nav {
+  display: flex;
+  margin-top: 0;
+  font-size: 0.8rem;
 
-      &:first-child {
-        padding-left: 0;
-        border-left: none;
-      }
+  a {
+    border-left: 2px dotted $gray;
+    padding: 0 0.8rem 0 0.8rem;
+
+    &:first-child {
+      padding-left: 0;
+      border-left: none;
     }
   }
 }
@@ -60,6 +60,7 @@ h2,
 h3,
 h4 {
   margin-top: 3rem;
+  position: relative;
 }
 
 h2 {
@@ -126,24 +127,8 @@ a {
 }
 
 .zola-anchor {
-  margin-left: -52px;
-  margin-right: 31px;
-}
-
-.logo {
-  width: 6rem;
-}
-
-.navbar {
-  a {
-    border-left: 2px solid $gray;
-    padding: 0 1.625rem 0 1.625rem;
-
-    &:first-child {
-      padding-left: 0;
-      border-left: none;
-    }
-  }
+  position: absolute;
+  left: -2rem;
 }
 
 .datestamp {
@@ -165,6 +150,25 @@ a {
   }
 }
 
+footer {
+  margin-top: 4rem;
+  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  nav {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $gray;
+    float: right;
+    margin: 0;
+  }
+}
+
+/* Print */
 @media print {
   html {
     font-size: 10px;
@@ -172,6 +176,10 @@ a {
 
   .header {
     display: none;
+  }
+
+  h1 {
+    margin-top: 0;
   }
 
   pre {
@@ -187,8 +195,15 @@ a {
   .zola-anchor {
     display: none;
   }
+
+  footer {
+    a {
+      display: none;
+    }
+  }
 }
 
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   body {
     color: white;
@@ -208,5 +223,22 @@ a {
 
   a {
     color: #66d9ef;
+  }
+}
+
+/* Small screens */
+@media (max-width: 576px) { 
+  .section {
+    padding: 1rem;
+  }
+
+  .header {
+    svg {
+      display: none;
+    }
+  }
+
+  .zola-anchor {
+    display: none;
   }
 }
