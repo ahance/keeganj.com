@@ -1,6 +1,6 @@
 +++
 title = "Hello World"
-aliases = ["/articles/hello-world"]
+aliases = ["/articles/2019-02-24-hello-world/"]
 date = 2019-02-24
 +++
 

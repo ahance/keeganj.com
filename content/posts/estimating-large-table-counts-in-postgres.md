@@ -1,7 +1,7 @@
 +++
 title = "Estimating Large Table Counts In Postgres"
 description = "How do you find how many items are in a table without COUNT(*)?"
-aliases = ["/articles/estimating-large-table-counts-in-postgres"]
+aliases = ["/articles/2019-02-26-Estimating-Large-Table-Counts-In-Postgres"]
 date = 2019-02-26
 +++
 
