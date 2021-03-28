@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="Rewriting my site to be javascript-free in Zola, the Rust-based static site generator">
+  <title>Hello Zola | KeeganJ</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="header">
+      <a href="/" class="logo">
+        <svg 
+          version="1.0" 
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 139.000000 182.000000"
+          preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(0.000000,182.000000) scale(0.100000,-0.100000)"="none">
+        <path d="M0 910 l0 -910 695 0 695 0 0 910 0 910 -695 0 -695 0 0 -910z m1000
+        714 c0 -3 -159 -173 -354 -378 -194 -204 -376 -396 -404 -426 l-51 -55 -1 433
+        0 432 405 0 c223 0 405 -3 405 -6z m198 -993 l-3 -331 -270 352 c-148 194
+        -270 358 -270 365 0 8 122 145 270 305 l270 291 3 -326 c1 -179 1 -474 0 -656z
+        m-533 106 c72 -94 194 -256 273 -359 l142 -188 -445 0 -445 0 0 186 0 186 168
+        174 c92 95 169 173 172 173 3 0 64 -77 135 -172z"/>
+        </g>
+        </svg>
+      </a>
+      <div class="title">
+        <h2>Keegan Jorgensen</h2>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/posts/">Posts</a>
+          <a href="/about/">About</a>
+          <a href="https://github.com/keeganj" target="blank" rel="noopener">Github</a>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+      
+<h1 class="title">
+  Hello Zola
+</h1>
+<p class="subtitle">2021-03-27</p>
+<p>It seems most engineers spend more time tinkering with how their blog works than writing content for it. Sadly, I'm no exception. &quot;Shiny new technology syndrome&quot; gripped me yet again when I read about <a rel="noopener" target="_blank" href="https://www.getzola.org/">Zola</a> on Hacker News, yet another static site generator. </p>
+<p>Wait, wait, don't go. This one's written in <em><strong>Rust</strong></em>.</p>
+<p>It strictly adheres to the idea of containing it's functionality within a single executable. It's written and maintained by an <a rel="noopener" target="_blank" href="https://github.com/getzola/zola#-explanations">opinionated author</a>. As every SSG seems to claim nowadays, it's fast. Unlike most of them, Zola is actually, blazingly fast.</p>
+<p>The main benefit to me is that it's not written in javascript. As much as I love javascript and it's expansive ecosystem, I'm trying my best to reduce my dependency on it. Not every site that displays content needs to be interactive after all, and I believe there's value in seeing a site that does more than just get all greens on a Google Lighthouse test. I want to be able to write sites that can display their content <em>instantly</em>, and the easiest way to do that is to take a break from my old friend JS.</p>
+<p>I don't know Rust. It's not that I don't want to know it, but moreso that I haven't gotten a good reason to learn it yet. Even though I graduated with a degree in Computer Engineering and had my later classes in low level languages and circuits, I haven't touched hardware since I left school. The market has kept me in fullstack web development since graduation. Despite that, I would <em>love</em> to have a reason to learn a low level language again. </p>
+<p>Like every programmer and his dog I've made my way through at at least a few tutorials from the <a rel="noopener" target="_blank" href="https://doc.rust-lang.org/stable/book/">Rust book</a>. Zola seemed like a nice way to eventually give myself a reason to ford past the chapter on <a rel="noopener" target="_blank" href="https://doc.rust-lang.org/stable/book/ch04-02-references-and-borrowing.html">References and Borrowing</a>. In the meantime I hoped that not knowing how the internals of the generator worked would keep me from tinkering with it and focus on my site's content.</p>
+<p>So, in and effort to reduce my time spent tinkering, I spent a few hours tinkering to rewrite my site with Zola. Here's what's different:</p>
+<ul>
+<li>I wrote the theme from scratch. I'm not a designer by trade, but over the past year I've been trying to learn more ways to express my engineering ideologies through visual design. That's a flowery way of saying I wrote all the CSS for this one and didn't use a theme. If you use <a rel="noopener" target="_blank" href="https://monokai.pro/">Monokai</a> in your editor you'll recognize most of the colors here.</li>
+<li>There's no JS. It's all just HTML and CSS. While most of the code I write is in JS or Typescript, I think there's value in being able to write useful websites without it.</li>
+<li>There's a dark mode. Not going to lie, I did this one mostly for myself so I could write and edit posts at night.</li>
+<li>It's printable. All posts should translate nicely to page if you're like me and like to occasionally print content to read and notate without the distractions of the modern desktop environment.</li>
+<li>It's <a rel="noopener" target="_blank" href="https://github.com/keeganj/keeganj.com">open source</a>. In addition to providing the source code for how this site is written, I believe there's value in showing the revision history of my work on a bigger code repository that will probably outlive this one.</li>
+<li>It's wicked fast. There's no javascript to spin up the page. No frontend tricks like link preloading to make it faster. No webpack config to sate or wait on 5 minute builds for. Just generated HTML and CSS you could run on your smart toaster.</li>
+</ul>
+<p>I won't describe it in much more detail than this because, frankly, it's liable to change. Looking at my <a href="https://keeganj.com/posts/hello-world/">Hello World</a> post (which to my shame is only 2 posts before this one), quite a lot has changed. I'm prone to tinkering.</p>
+<p>Unlike most of my attempts at unique design, I'm happy with this one. With luck it will encourage more blog posts in the near future.</p>
+
+
+<footer>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
+    <a href="https://github.com/keeganj" target="blank" rel="noopener">Github</a>
+  </nav>
+  <p>© 2021 Keegan Jorgensen</p>
+</footer>
+
+    </div>
+  </section>
+</body>
+
+</html>
