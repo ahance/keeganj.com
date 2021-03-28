@@ -6,9 +6,5 @@
 
 {% block content %}
 <h1 class="title">{{ page.title }}</h1>
-
-<pre>
-{{ __tera_context }}
-</pre>
 {{ page.content | safe }}
 {% endblock content %}
