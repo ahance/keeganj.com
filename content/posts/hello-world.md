@@ -1,5 +1,6 @@
 +++
 title = "Hello World"
+description = "An introduction to the technologies behind keeganj.com"
 aliases = ["/articles/2019-02-24-hello-world/"]
 date = 2019-02-24
 +++

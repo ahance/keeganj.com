@@ -1,5 +1,6 @@
 +++
 title = "About"
+description = "Keegan Jorgensen's tech stack and work history"
 template = "page.html"
 +++
 
