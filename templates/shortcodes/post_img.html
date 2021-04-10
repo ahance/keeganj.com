@@ -1,0 +1,11 @@
+{% set full_path = page.path ~ path | trim_start_matches(pat="/") %}
+{% set box_size = 1344 %}
+
+<div class="post-img">
+  <a href={{get_url(path=full_path)}}>
+    <img
+      alt="{{ alt }}" 
+      src="{{ resize_image(path=full_path, height=box_size, width=box_size, op="fit") }}"
+    />
+  </a>
+</div>

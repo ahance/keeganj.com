@@ -8,12 +8,23 @@
 <h1 class="title">
   {{ page.title }}
 </h1>
-<p class="subtitle">{{ page.date }}</p>
+<div class="subtitle">{{ page.date }} · {{ page.reading_time }} minute read</div>
+
+{% if page.toc %}
+  <ul class="toc">
+  {% for h2 in page.toc %}
+      <li>
+        <a href="{{h2.permalink | safe}}">{{ h2.title }}</a>
+      </li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
 {{ page.content | safe }}
 
-<p class="revision-history">
+<div class="revision-history">
   You can see the revision history of this post on <a href="https://github.com/KeeganJ/keeganj.com/commits/master/content/posts/{{ page.slug }}.md">Github</a>
-</p>
+</div>
 
 <footer>
   <nav>
@@ -22,6 +33,6 @@
     <a href="/about/">About</a>
     <a href="https://github.com/keeganj" target="blank" rel="noopener">Github</a>
   </nav>
-  <p>© {{  now() | date(format="%Y") }} Keegan Jorgensen</p>
+  <div>© {{  now() | date(format="%Y") }} Keegan Jorgensen</div>
 </footer>
 {% endblock content %}

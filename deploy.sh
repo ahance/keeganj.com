@@ -1,5 +1,6 @@
 #!/bin/sh
 
+zola check
 zola build
 git add .
 git commit -m "$1"

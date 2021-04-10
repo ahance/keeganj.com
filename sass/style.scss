@@ -1,11 +1,11 @@
-$black: #272822; 
 $gray: #75715e;
+$serif: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+$sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
 body {
   display: table;
   margin: auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background: rgba($black, 0.05);
+  font-family: $sans;
 }
 
 .section {
@@ -52,7 +52,8 @@ h1 {
 }
 
 .subtitle {
-  margin-bottom: 4rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
   color: $gray;
 }
 
@@ -76,23 +77,43 @@ h4 {
 }
 
 p {
+  font-family: $serif;
   margin-top: 1rem;
   line-height: 1.625;
 }
 
 ul {
   list-style-type: none;
-}
 
-ul li:before {
-  content: '\2011';
-  margin-left: -2rem;
-  position: absolute;
-}
+  li:before {
+    content: '\2011';
+    margin-left: -2rem;
+    position: absolute;
+  }
+} 
 
 li {
-  margin-top: 1rem;
+  margin-top: 0.3rem;
   line-height: 1.625;
+  font-family: $serif;
+}
+
+.toc {
+  list-style-type: none;
+  padding-left: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  border-left: 1px solid $gray;
+  font-size: 0.8rem;
+
+  li {
+    margin-top: 0.4rem;
+    font-family: $sans;
+  }
+  
+  li:before {
+    content: none
+  }
 }
 
 pre {
@@ -107,15 +128,14 @@ pre {
 }
 
 code {
-  background: rgba($black, 0.1);
-  padding: 0.25rem;
+  background: rgba(#272822, 0.1);
 }
 
 blockquote {
-  border-left: 2px solid $gray;
+  border-left: 1px solid $gray;
   margin-left: 0;
   padding-left: 1.625rem;
-  color: $gray;
+  font-style: italic;
 }
 
 a {
@@ -162,7 +182,7 @@ footer {
     margin-bottom: 1rem;
   }
 
-  p {
+  div {
     color: $gray;
     float: right;
     margin: 0;
@@ -173,6 +193,19 @@ footer {
   margin-top: 1.625rem;
   font-style: italic;
   font-size: 0.8rem;
+}
+
+.post-img {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 2rem 0 2rem 0;
+
+  img {
+    width: 100%;
+    max-width: 42rem;
+    height: auto;
+  }
 }
 
 /* Print */
@@ -214,7 +247,7 @@ footer {
 @media (prefers-color-scheme: dark) {
   body {
     color: white;
-    background: $black;
+    background: darken(#272822, 6);
     font-weight: 300;
   }
 
@@ -222,10 +255,6 @@ footer {
     svg {
       fill: white;
     }
-  }
-
-  pre {
-    border: 2px dashed $gray;
   }
 
   a {
