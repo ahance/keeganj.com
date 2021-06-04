@@ -14,7 +14,6 @@
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    
   </head>
   <body>
     <section class="section">
@@ -41,7 +40,7 @@
             </g>
           </svg>
         </a>
-        <div class="title">
+        <div class="header-body">
           <h2>Keegan Jorgensen</h2>
           <nav>
             <a href="/">Home</a>
@@ -54,36 +53,38 @@
         </div>
       </div>
       <div class="container">
-<h1 class="title">
-  Estimating Large Table Counts In Postgres
-</h1>
-<div class="subtitle">2019-02-26 · 7 minute read</div>
+<div class="hero">
+  <h1>
+    Estimating Large Table Counts In Postgres
+  </h1>
+  <div class="subtitle">2019-02-26 · 7 minute read</div>
 
-
-  <ul class="toc">
   
-      <li>
-        <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#for-the-want-of-a-count">For the Want of a COUNT</a>
-      </li>
+    <ul class="toc">
+    
+        <li>
+          <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#for-the-want-of-a-count">For the Want of a COUNT</a>
+        </li>
+    
+        <li>
+          <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#ab-using-explain">(Ab)using EXPLAIN</a>
+        </li>
+    
+        <li>
+          <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#testing-the-happy-path">Testing the Happy Path</a>
+        </li>
+    
+        <li>
+          <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#potential-pitfalls">Potential Pitfalls</a>
+        </li>
+    
+        <li>
+          <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#summary">Summary</a>
+        </li>
+    
+    </ul>
   
-      <li>
-        <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#ab-using-explain">(Ab)using EXPLAIN</a>
-      </li>
-  
-      <li>
-        <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#testing-the-happy-path">Testing the Happy Path</a>
-      </li>
-  
-      <li>
-        <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#potential-pitfalls">Potential Pitfalls</a>
-      </li>
-  
-      <li>
-        <a href="https://keeganj.com/posts/estimating-large-table-counts-in-postgres/#summary">Summary</a>
-      </li>
-  
-  </ul>
-
+</div>
 
 <h2 id="for-the-want-of-a-count"><a class="zola-anchor" href="#for-the-want-of-a-count" aria-label="Anchor link for: for-the-want-of-a-count">#</a>For the Want of a <code>COUNT</code></h2>
 <p>Today I found myself with the problem of executing a <code>COUNT</code> query with a simple <code>WHERE</code> clause on a large table. The user wanted to get an idea of how many rows were of a particular type, but wanted to do so within the course of a page load. The result didn't have to be exact, but it did have to give a rough idea of how large the <em>real</em> number of rows in the result were. The <code>COUNT</code> query was taking over a minute to execute (which is well past the threshold of what I wanted in the flow of a web request), so I decided to investigate ways of getting a &quot;close enough&quot; answer in less time.</p>

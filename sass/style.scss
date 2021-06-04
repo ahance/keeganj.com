@@ -51,6 +51,10 @@ h1 {
   margin-bottom: 0;
 }
 
+.hero {
+  margin-bottom: 3rem;
+}
+
 .subtitle {
   margin-top: 1rem;
   font-size: 0.8rem;
@@ -102,7 +106,6 @@ li {
   list-style-type: none;
   padding-left: 1rem;
   margin-top: 1rem;
-  margin-bottom: 3rem;
   border-left: 1px solid $gray;
   font-size: 0.8rem;
 

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="Description"
+      content="Testing PostgreSQL statements for syntax errors without running them"
+    />
+    <title>Testing PostgreSQL statements for syntax errors without running them | KeeganJ</title>
+    <link rel="stylesheet" href="/style.css" />
+    <meta property="og:locale" content="en_us" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  </head>
+  <body>
+    <section class="section">
+      <div class="header">
+        <a href="/" class="logo" title="logo">
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 139.000000 182.000000"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <g
+              transform="translate(0.000000,182.000000) scale(0.100000,-0.100000)"
+              ="none"
+            >
+              <path
+                d="M0 910 l0 -910 695 0 695 0 0 910 0 910 -695 0 -695 0 0 -910z m1000
+                714 c0 -3 -159 -173 -354 -378 -194 -204 -376 -396 -404 -426 l-51 -55 -1 433
+                0 432 405 0 c223 0 405 -3 405 -6z m198 -993 l-3 -331 -270 352 c-148 194
+                -270 358 -270 365 0 8 122 145 270 305 l270 291 3 -326 c1 -179 1 -474 0 -656z
+                m-533 106 c72 -94 194 -256 273 -359 l142 -188 -445 0 -445 0 0 186 0 186 168
+                174 c92 95 169 173 172 173 3 0 64 -77 135 -172z"
+              />
+            </g>
+          </svg>
+        </a>
+        <div class="header-body">
+          <h2>Keegan Jorgensen</h2>
+          <nav>
+            <a href="/">Home</a>
+            <a href="/posts/">Posts</a>
+            <a href="/about/">About</a>
+            <a href="https://github.com/keeganj" target="blank" rel="noopener"
+              >Github</a
+            >
+          </nav>
+        </div>
+      </div>
+      <div class="container">
+<div class="hero">
+  <h1>
+    Testing PostgreSQL statements for syntax errors without running them
+  </h1>
+  <div class="subtitle">2021-06-03 · 2 minute read</div>
+
+  
+</div>
+
+<pre style="background-color:#272822;">
+<code class="language-sql" data-lang="sql"><span style="color:#f8f8f2;">DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span style="color:#f8f8f2;"> RETURN;
+    </span><span style="color:#75715e;">-- &lt;Your code here&gt;
+</span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">; $TEST$;
+</span></code></pre>
+<p>The easiest way to test most SQL queries is to run them. Feedback is immediate. It's easy to rapidly iterate on results until the query returns what you're looking for.</p>
+<p>Sometimes you may only want to give your query a dry run. Maybe you're developing an insert statement that you'd rather not run every time to test. Maybe you're working on a parameterized query and don't want to think about test data. You should be able to test if your query is valid just as quickly as you test simple <code>SELECT</code> queries.</p>
+<p>The simple trick is to surround your statement in a short circuited <a rel="noopener" target="_blank" href="https://www.postgresql.org/docs/13/sql-do.html">anonymous code block</a>. This allows the query parser to read the full block of code as if it were to execute, without actually executing it. An immediate <code>RETURN</code> statement stops any of your code from executing.</p>
+<p>Let's test it out:</p>
+<pre style="background-color:#272822;">
+<code class="language-sql" data-lang="sql"><span style="color:#f8f8f2;">DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span style="color:#f8f8f2;"> RETURN;
+  </span><span style="color:#f92672;">INSERT</span><span style="color:#f8f8f2;"> INO users (id, email) </span><span style="color:#f92672;">VALUES</span><span style="color:#f8f8f2;"> ($</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, $</span><span style="color:#ae81ff;">2</span><span style="color:#f8f8f2;">);
+</span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">; $TEST$;
+
+</span><span style="color:#75715e;">-- Query 1 ERROR: ERROR:  syntax error at or near &quot;INO&quot;
+-- LINE 2:   INSERT INO users (id, email) VALUES ($1, $2);
+--                  ^
+</span></code></pre>
+<p>Here we are able to check an insert statement for syntax errors. We didn't need to worry about side effects from testing our statement. We also didn't have to supply it with example parameters. Instead the parser helpfully pointed out our error.</p>
+<p>Now that we know what's wrong, let's see what happens when our syntax is correct:</p>
+<pre style="background-color:#272822;">
+<code class="language-sql" data-lang="sql"><span style="color:#f8f8f2;">DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span style="color:#f8f8f2;"> RETURN;
+  </span><span style="color:#f92672;">INSERT INTO</span><span style="color:#f8f8f2;"> accounts (id, email) </span><span style="color:#f92672;">VALUES</span><span style="color:#f8f8f2;"> ($</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, $</span><span style="color:#ae81ff;">2</span><span style="color:#f8f8f2;">);
+</span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">; $TEST$;
+
+</span><span style="color:#75715e;">-- Query 1 OK: DO
+</span></code></pre>
+<p>The <code>OK: DO</code> result returned informs us that our statement executed without a hitch. What it doesn't know is that only the <code>RETURN</code> statement at the head executed. While the rest of our syntax was correct, none of it actually ran.</p>
+<p>Full credit goes to <a rel="noopener" target="_blank" href="https://github.com/rin-nas">Rinat Mukhatrov</a> for sharing this technique on <a rel="noopener" target="_blank" href="https://stackoverflow.com/questions/8271606/postgresql-syntax-check-without-running-the-query/60525009#60525009">StackOverflow</a>. He uses this technique in his <a rel="noopener" target="_blank" href="https://github.com/rin-nas/postgresql-patterns-library/blob/master/functions/is_sql.sql"><code>is_sql</code></a> function, one of many in his <a rel="noopener" target="_blank" href="https://github.com/rin-nas/postgresql-patterns-library"><code>postgres-patterns-library</code></a>.</p>
+
+
+<div class="revision-history">
+  You can see the revision history of this post on <a href="https://github.com/KeeganJ/keeganj.com/commits/master/content/posts/testing-postgresql-statements-for-syntax-errors-without-running-them.md">Github</a>
+</div>
+
+<footer>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/posts/">Posts</a>
+    <a href="/about/">About</a>
+    <a href="https://github.com/keeganj" target="blank" rel="noopener">Github</a>
+  </nav>
+  <div>© 2021 Keegan Jorgensen</div>
+</footer>
+</div>
+    </section>
+  </body>
+</html>

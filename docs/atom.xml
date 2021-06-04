@@ -5,8 +5,45 @@
 	<link href="https://keeganj.com/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://keeganj.com"/>
 	<generator uri="https://www.getzola.org/">Zola</generator>
-	<updated>2021-03-27T00:00:00+00:00</updated>
+	<updated>2021-06-03T00:00:00+00:00</updated>
 	<id>https://keeganj.com/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Testing PostgreSQL statements for syntax errors without running them</title>
+		<published>2021-06-03T00:00:00+00:00</published>
+		<updated>2021-06-03T00:00:00+00:00</updated>
+		<link href="https://keeganj.com/posts/testing-postgresql-statements-for-syntax-errors-without-running-them/" type="text/html"/>
+		<id>https://keeganj.com/posts/testing-postgresql-statements-for-syntax-errors-without-running-them/</id>
+		<content type="html">&lt;pre style=&quot;background-color:#272822;&quot;&gt;
+&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; RETURN;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- &amp;lt;Your code here&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;; $TEST$;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The easiest way to test most SQL queries is to run them. Feedback is immediate. It&#x27;s easy to rapidly iterate on results until the query returns what you&#x27;re looking for.&lt;&#x2F;p&gt;
+&lt;p&gt;Sometimes you may only want to give your query a dry run. Maybe you&#x27;re developing an insert statement that you&#x27;d rather not run every time to test. Maybe you&#x27;re working on a parameterized query and don&#x27;t want to think about test data. You should be able to test if your query is valid just as quickly as you test simple &lt;code&gt;SELECT&lt;&#x2F;code&gt; queries.&lt;&#x2F;p&gt;
+&lt;p&gt;The simple trick is to surround your statement in a short circuited &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.postgresql.org&#x2F;docs&#x2F;13&#x2F;sql-do.html&quot;&gt;anonymous code block&lt;&#x2F;a&gt;. This allows the query parser to read the full block of code as if it were to execute, without actually executing it. An immediate &lt;code&gt;RETURN&lt;&#x2F;code&gt; statement stops any of your code from executing.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s test it out:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#272822;&quot;&gt;
+&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; RETURN;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;INSERT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; INO users (id, email) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;VALUES&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; ($&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;, $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;; $TEST$;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Query 1 ERROR: ERROR:  syntax error at or near &amp;quot;INO&amp;quot;
+-- LINE 2:   INSERT INO users (id, email) VALUES ($1, $2);
+--                  ^
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we are able to check an insert statement for syntax errors. We didn&#x27;t need to worry about side effects from testing our statement. We also didn&#x27;t have to supply it with example parameters. Instead the parser helpfully pointed out our error.&lt;&#x2F;p&gt;
+&lt;p&gt;Now that we know what&#x27;s wrong, let&#x27;s see what happens when our syntax is correct:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#272822;&quot;&gt;
+&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; RETURN;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;INSERT INTO&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; accounts (id, email) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;VALUES&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; ($&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;, $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;; $TEST$;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Query 1 OK: DO
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The &lt;code&gt;OK: DO&lt;&#x2F;code&gt; result returned informs us that our statement executed without a hitch. What it doesn&#x27;t know is that only the &lt;code&gt;RETURN&lt;&#x2F;code&gt; statement at the head executed. While the rest of our syntax was correct, none of it actually ran.&lt;&#x2F;p&gt;
+&lt;p&gt;Full credit goes to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rin-nas&quot;&gt;Rinat Mukhatrov&lt;&#x2F;a&gt; for sharing this technique on &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;8271606&#x2F;postgresql-syntax-check-without-running-the-query&#x2F;60525009#60525009&quot;&gt;StackOverflow&lt;&#x2F;a&gt;. He uses this technique in his &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rin-nas&#x2F;postgresql-patterns-library&#x2F;blob&#x2F;master&#x2F;functions&#x2F;is_sql.sql&quot;&gt;&lt;code&gt;is_sql&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; function, one of many in his &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rin-nas&#x2F;postgresql-patterns-library&quot;&gt;&lt;code&gt;postgres-patterns-library&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+	</entry>
 	<entry xml:lang="en">
 		<title>Hello Zola</title>
 		<published>2021-03-27T00:00:00+00:00</published>
