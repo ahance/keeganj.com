@@ -119,6 +119,11 @@ li {
   }
 }
 
+.body {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 pre {
   line-height: 1.625;
   padding: 1.625rem;
@@ -175,7 +180,7 @@ a {
 }
 
 footer {
-  margin-top: 4rem;
+  margin-top: 1rem;
   font-size: 0.8rem;
   display: flex;
   flex-wrap: wrap;
@@ -193,7 +198,6 @@ footer {
 }
 
 .revision-history {
-  margin-top: 1.625rem;
   font-style: italic;
   font-size: 0.8rem;
 }

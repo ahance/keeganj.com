@@ -22,7 +22,9 @@
   {% endif %}
 </div>
 
-{{ page.content | safe }}
+<div class="body">
+  {{ page.content | safe }}
+</div>
 
 <div class="revision-history">
   You can see the revision history of this post on <a href="https://github.com/KeeganJ/keeganj.com/commits/master/content/posts/{{ page.slug }}.md">Github</a>

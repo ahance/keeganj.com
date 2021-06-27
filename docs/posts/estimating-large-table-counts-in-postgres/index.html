@@ -86,7 +86,8 @@
   
 </div>
 
-<h2 id="for-the-want-of-a-count"><a class="zola-anchor" href="#for-the-want-of-a-count" aria-label="Anchor link for: for-the-want-of-a-count">#</a>For the Want of a <code>COUNT</code></h2>
+<div class="body">
+  <h2 id="for-the-want-of-a-count"><a class="zola-anchor" href="#for-the-want-of-a-count" aria-label="Anchor link for: for-the-want-of-a-count">#</a>For the Want of a <code>COUNT</code></h2>
 <p>Today I found myself with the problem of executing a <code>COUNT</code> query with a simple <code>WHERE</code> clause on a large table. The user wanted to get an idea of how many rows were of a particular type, but wanted to do so within the course of a page load. The result didn't have to be exact, but it did have to give a rough idea of how large the <em>real</em> number of rows in the result were. The <code>COUNT</code> query was taking over a minute to execute (which is well past the threshold of what I wanted in the flow of a web request), so I decided to investigate ways of getting a &quot;close enough&quot; answer in less time.</p>
 <p>There's a few different ways to approach a problem like this, but many of those approaches involve some level of pre-calculation or caching (such as materialized views or using sequences). I didn't want to give such a simple query the overhead of an external process, and I'm usually averse to database triggers when they aren't standard in a database already. I needed a way to estimate the result of my query entirely within a single request flow.</p>
 <h2 id="ab-using-explain"><a class="zola-anchor" href="#ab-using-explain" aria-label="Anchor link for: ab-using-explain">#</a>(Ab)using <code>EXPLAIN</code></h2>
@@ -216,6 +217,7 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 <li><a rel="noopener" target="_blank" href="https://www.postgresql.org/message-id/20050810133157.GA46247@winnie.fuhr.org">&quot;Re: **SPAM** Faster count(*)?&quot; - postgresql.org</a></li>
 </ul>
 
+</div>
 
 <div class="revision-history">
   You can see the revision history of this post on <a href="https://github.com/KeeganJ/keeganj.com/commits/master/content/posts/estimating-large-table-counts-in-postgres.md">Github</a>

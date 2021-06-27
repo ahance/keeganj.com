@@ -62,7 +62,8 @@
   
 </div>
 
-<pre style="background-color:#272822;">
+<div class="body">
+  <pre style="background-color:#272822;">
 <code class="language-sql" data-lang="sql"><span style="color:#f8f8f2;">DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span style="color:#f8f8f2;"> RETURN;
     </span><span style="color:#75715e;">-- &lt;Your code here&gt;
 </span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">; $TEST$;
@@ -92,6 +93,7 @@
 <p>The <code>OK: DO</code> result returned informs us that our statement executed without a hitch. What it doesn't know is that only the <code>RETURN</code> statement at the head executed. While the rest of our syntax was correct, none of it actually ran.</p>
 <p>Full credit goes to <a rel="noopener" target="_blank" href="https://github.com/rin-nas">Rinat Mukhatrov</a> for sharing this technique on <a rel="noopener" target="_blank" href="https://stackoverflow.com/questions/8271606/postgresql-syntax-check-without-running-the-query/60525009#60525009">StackOverflow</a>. He uses this technique in his <a rel="noopener" target="_blank" href="https://github.com/rin-nas/postgresql-patterns-library/blob/master/functions/is_sql.sql"><code>is_sql</code></a> function, one of many in his <a rel="noopener" target="_blank" href="https://github.com/rin-nas/postgresql-patterns-library"><code>postgres-patterns-library</code></a>.</p>
 
+</div>
 
 <div class="revision-history">
   You can see the revision history of this post on <a href="https://github.com/KeeganJ/keeganj.com/commits/master/content/posts/testing-postgresql-statements-for-syntax-errors-without-running-them.md">Github</a>
