@@ -4,100 +4,102 @@ description = "Keegan Jorgensen's tech stack and work history"
 template = "page.html"
 +++
 
-My name is Keegan Jorgensen, and I'm a software engineer currently living in the Twin Cities (MN) area.
+## Links
+
+- **[Resume (PDF)](/resume-keegan-jorgensen.pdf)** - If you appreciate a one page overview.
+- **[LinkedIn](https://linkedin.com/in/keeganj)** - If you'd like to connect.
+- **[Github](https://github.com/keeganj)** - If you're here for the code.
 
 ## Tech Stack
 
-- **Languages** - Typescript, Javascript, SQL, C#, Bash
-- **Frameworks** - NodeJS, React, Apollo, Express, Mocha, Sinon, .NET Core, Artillery.io
-- **Platforms** - AWS, Github Actions, CircleCI, Heroku, Google Vision
-- **Tools** - PostgreSQL, RabbitMQ, Webpack, Docker, Vagrant, Git, SQL Server 2016, SQLite, Redis
+- **Languages** - Typescript · Javascript · SQL · C# · Bash
+- **Frameworks** - NodeJS · React · Apollo · Express · Mocha · Sinon · .NET Core · Artillery.io · Electron · Entity Framework · Bootstrap · Tailwind · Linq · jQuery · KnockoutJS · Xunit · AngularJS · Sinon · Mocha · Karma · Chrome Embedded Framework
+- **Platforms** - AWS · Github · CircleCI · Heroku · Google Cloud
+- **Tools** - PostgreSQL · GraphQL · RabbitMQ · Webpack · Docker · Vagrant · Git · SQL Server · SQLite · Redis · TablePlus · Visual Studio Code · Yarn · tmux · Gitlab · Jira
 
 ## Employment
 
-### [Caretaker](https://caretaker.com)
+### Head of Engineering
 
-_Head of Engineering, July 2019 - Present_
+**[Caretaker](https://caretaker.com)** · _July 2019 - Present_
 
-- Lead development of internal tooling for developers and Customer Service, Operations, and Business Development employees.
-- Designed a listing pricing algorithm to automate the repricing of marketed listings.
-- Created Q&A system for listers to manage questions asked by prospective tenants.
-- Architected syndication feed system, kept listings updated between 5 platforms.
-- Developed duplicate image detection system to protect viewers from scam listers.
-- Implemented object recognition to automatically order apartments photos based on content.
-- Created and managed full CI/CD system on top of Github Actions
-- Designed an automated service worker dispatch system to automatically clean newly acquired apartments and pay service workers.
+- Started as Internal Tools Lead, promoted to Head of Engineering in July 2020.
+- Led development of all infrastructure, tooling, and applications at Caretaker.
+- Implemented full lifecycle, landlord configurable, automated apartment maintenance system.
+- Created automated service dispatch system for damages reported within apartments.
+- Designed algorithm to automate repricing of public listings, reduced ops time spent on repricing to 0.
+- Created per listing Q&A system for listers to publicly manage listing questions, cut out redundant questions.
+- Architected syndication feed for third party listing sites, kept listings in sync across over 50 services.
+- Developed duplicate image detection system, cut down on manual review of scam listings by over 50%.
+- Created a CI/CD system within Github actions on top of a monorepo, brought deploy steps down to 1 click.
+- Utilized Google Vision APIs to automate ordering of apartment photos based on content.
 
+### Senior Backend Engineer
 
-### [Third Iron](https://thirdiron.com)
+**[Third Iron](https://thirdiron.com)** · _October 2017 - July 2019_
 
-_Senior Software Engineer, Octover 2017 - July 2019_
+- Scaled server infrastructure to handle rapidly increasing customer demand.
+- Created automated load testing system based on artillery.io to verify performance of live infrastructure.
+- Fine tuned complex PostgreSQL queries and NodeJS backends to handle increasing load.
+- Migrated production Javascript backends and frontends to Typescript to reduce typing errors.
+- Developed CircleCI 2.0 CI/CD infrastructure, Docker images for development and release.
+- Orchestrated AWS EC2, Opsworks, and ECS infrastructure and maintenance.
+- Designed academic metadata syncronization systems for CrossRef and Pubmed.
 
-- Managed scaling server infrastructure to handle rapidly increasing customer base.
-- Created a load testing tool based on artillery.io to stage experiments on live deployed infrastructure.
-- Used experiments to determine efficiency improvements to NodeJS backends and Postgresql databases.
-- Migrated several production systems to Typescript and steady migration strategies for others.
-- Developed CircleCI 2.0 infrastructure for CI/CD of live applications and a shared private Docker build image.
-- Managed AWS infrastructure, including Opsworks recipes and EC2 tooling.
-- Wrote metadata intake systems for CrossRef and Pubmed.
-- Orchestrated deployments and wrote tooling to automate creating release notes and warnings.
+### Software Team Lead
 
-### [Spreetail](https://spreetail.com)
+**[Spreetail](https://spreetail.com)** · _May 2015 - June 2017_
 
-_Software Lead, January 2016 - June 2017_
-
-- Directed day to day operations of Business Development software creation and maintenance.
+- Started as Software Engineer, promoted to Software Team Lead in October 2015.
+- Managed development of software for Account Management, Content, Marketing, and Marketplace teams.
 - Created and taught classes on technical and non-technical subjects to departments across Spreetail.
-- Vetted, architected, and prioritized new project proposals from BD staff and engineers.
-- Led department to complete “Dead Code” objective, removing 28 deprecated monthly.
-- Designed and led development of Catalog System.
-- Distributed microservice architecture using RabbitMQ for cross-service communication.
-- Designed with high redundancy, high logging visibility, and seamless scalability in mind.
-- Reduced average price update time from 3 hours to 2 minutes on some marketplaces.
+- Vetted, architected, and prioritized new project proposals from stakeholders and engineers.
+- Spearheaded a "Dead Code" removal initiative, removed 28 deprecated sections of code from codebase monthly.
+- Designed a unified inventory catalog syndication system. Balanced load across microservices with RabbitMQ.
+- Reduced average price update time from 3 hours to 2 minutes on formerly slow marketplaces.
+- Reverse engineered Amazon Merchant Web Services API to dynamically generate schemas on a per item basis.
+- Designed CrossLister, an item detail abstraction flow. Saved each account manager 2 hours of work daily.
+- Led hackathon team creation of pricing automation tool, saved account managers hours weekly in price research.
 
-_Software Engineer, May 2015 - January 2016_
+### Product Manager Consultant
 
-- Reverse engineered Amazon MWS API to allow for item specific field generation, reducing errors.
-- Designed CrossLister, a cross-marketplace item posting program (Amazon, Walmart, eBay, and Sears). Saved every content creator in the company 2 hours of work daily. 
-- Led hackathon team to create PAT (Pricing Automation Tool), an intelligent listing repricer.
+**[Design Studio (LI-COR)](https://www.licor.com/)** · _August 2014 - May 2015_
 
-### [Design Studio (LI-COR)](https://www.licor.com/)
-
-_Product Manager (Consultant), August 2014 - May 2015_
-
-- Created digital lab notebook tailored to fit the needs of scientists still using paper notebooks.
+- Designed digital lab notebook tailored to fit the needs of scientists still using paper notebooks.
+- Built cross-platform Chrome Embedded Framework application to integrate HTML content into notebooks.
 - Coordinated and planned efforts with 2 other independently led teams (LI-COR and Don’t Panic Labs).
-- Achieved 90% client satisfaction first release, changed work direction to receive 100% every release after.
+- Achieved 90% client satisfaction first release, increased to 100% every release thereafter.
 
-### [Sheldon Museum of Art](https://sheldonartmuseum.org/)
+### Software Engineer Consultant
 
-_Software Consultant, April 2014 - August 2014_
+**[Sheldon Museum of Art](https://sheldonartmuseum.org/)** · _April 2014 - August 2014_
 
 - Designed and created virtual tour mobile web app for Sheldon Sculpture Garden.
-- Used GPS to provide relevant exhibit photography and audio tours.
+- Utilized GPS to provide relevant exhibit photography and audio tours.
 - Integrated with Google Streetview tours of Sculpture Garden.
-- Created content management system for museum workers to update site without coding. 
+- Created content management system for museum workers to update site without coding.
 
-### [Garmin (Aviation Division)](https://buy.garmin.com/en-US/US/in-the-air/general-aviation/cInTheAir-c582-p0.html)
+### Software Engineer Intern
 
-_Software Engineer (Intern), May 2013 - August 2013_
+**[Garmin (Aviation Division)](https://buy.garmin.com/en-US/US/in-the-air/general-aviation/cInTheAir-c582-p0.html)** · _May 2013 - August 2013_
 
-- Migrated GIA 1000 (aircraft control systems) code to library for future device use.  
-- Wrote extensive tests to achieve 100% (statement and branch) code coverage on all migrated libraries.
-- Edited relevant sections in pilot’s manual and wrote documentation to meet FAA standards.
+- Abstracted C code designed for GIA 1000 (aircraft control systems) to be used on future aircraft.  
+- Extensively tested code to achieve 100% (statement and branch) coverage on all migrated libraries.
+- Revised and authored portions of pilots manual to meet stringent FAA standards.
 
-### [Thomson Reuters (Findlaw)](https://www.findlaw.com/)
+### Software Engineer Intern
 
-_Software Engineer (Intern), May 2012 - August 2012_
+**[Thomson Reuters (Findlaw)](https://www.findlaw.com/)** · _May 2012 - August 2012_
 
-- Migrated GIA 1000 (aircraft control systems) code to library for future device use.  
-- Wrote extensive tests to achieve 100% (statement and branch) code coverage on all migrated libraries.
-- Edited relevant sections in pilot’s manual and wrote documentation to meet FAA standards.
+- Developed Java CMS for internal customer operations (roughly 800 employee users)
+- Wrote server job monitors in OpenReports with SQL to alert DBAs when jobs failed or were over time.
+- Designed an analytics system to better optomize customer operations workflows (based around Splunk).
 
 ## Education
 
-### Bachelors of Science, Computer Engineering
+### B.S.E Computer Engineering
 
-- University of Nebraska, Lincoln
-- Jeffrey Raikes School of Computer Science and Business (cohort of 20, University Honors)
-- August 2011 - May 2015
+**[University of Nebraska, Lincoln](https://unl.edu)** - _August 2011 - May 2015_
+
+- B.S.E. in Computer Engineering with Minor in Business. GPA: 3.8.
+- Jeffrey Raikes School of Computer Science and Business (cohort of 20) and University Honors. 

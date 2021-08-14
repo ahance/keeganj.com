@@ -1,22 +1,28 @@
 $gray: #75715e;
-$serif: charter, Georgia, Cambria, "Times New Roman", Times, serif;
-$sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+@import url('https://rsms.me/inter/inter.css');
 
 body {
   display: table;
   margin: auto;
-  font-family: $sans;
+  font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  body { font-family: 'Inter var', sans-serif; }
 }
 
 .section {
   display: table-cell;
   width: 42rem;
-  padding: 3rem;
+  padding: 1rem 3rem 1rem 3rem;
 }
 
 .header {
   display: flex;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid black;
 
   svg {
     height: 3.3rem;
@@ -25,19 +31,16 @@ body {
   }
 
   h2 {
-    font-weight: 300;
-    margin: 0 0 1rem -0.1rem;
+    margin: 0 0 0.7rem -0.1rem;
   }
 }
 
 nav {
   display: flex;
   margin-top: 0;
-  font-size: 0.8rem;
 
   a {
-    border-left: 1px solid $gray;
-    padding: 0 0.8rem 0 0.8rem;
+    padding: 0 0.5rem 0 0.5rem;
 
     &:first-child {
       padding-left: 0;
@@ -81,25 +84,28 @@ h4 {
 }
 
 p {
-  font-family: $serif;
   margin-top: 1rem;
   line-height: 1.625;
 }
 
 ul {
   list-style-type: none;
+  padding-left: 1.5rem;
 
   li:before {
     content: '\2011';
-    margin-left: -2rem;
+    margin-left: -1.5rem;
     position: absolute;
   }
 } 
 
 li {
   margin-top: 0.3rem;
-  line-height: 1.625;
-  font-family: $serif;
+  line-height: 1.625;  
+}
+
+td {
+  padding: 0 1rem 0.8rem 0;
 }
 
 .toc {
@@ -111,7 +117,6 @@ li {
 
   li {
     margin-top: 0.4rem;
-    font-family: $sans;
   }
   
   li:before {
@@ -254,11 +259,13 @@ footer {
 @media (prefers-color-scheme: dark) {
   body {
     color: white;
-    background: darken(#272822, 6);
+    background: black;
     font-weight: 300;
   }
 
   .header {
+    border-color: white;
+
     svg {
       fill: white;
     }
