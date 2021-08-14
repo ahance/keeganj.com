@@ -7,7 +7,7 @@ template = "page.html"
 ## Links
 
 - **[Resume (PDF)](/resume-keegan-jorgensen.pdf)** - If you appreciate a one page overview.
-- **[LinkedIn](https://linkedin.com/in/keeganj)** - If you'd like to connect.
+- **[LinkedIn](https://www.linkedin.com/in/keeganj/)** - If you'd like to connect.
 - **[Github](https://github.com/keeganj)** - If you're here for the code.
 
 ## Tech Stack
@@ -48,7 +48,7 @@ template = "page.html"
 
 ### Software Team Lead
 
-**[Spreetail](https://spreetail.com)** · _May 2015 - June 2017_
+**[Spreetail](https://www.wearespreetail.com/)** · _May 2015 - June 2017_
 
 - Started as Software Engineer, promoted to Software Team Lead in October 2015.
 - Managed development of software for Account Management, Content, Marketing, and Marketplace teams.
@@ -81,7 +81,7 @@ template = "page.html"
 
 ### Software Engineer Intern
 
-**[Garmin (Aviation Division)](https://buy.garmin.com/en-US/US/in-the-air/general-aviation/cInTheAir-c582-p0.html)** · _May 2013 - August 2013_
+**[Garmin (Aviation Division)](https://www.garmin.com/)** · _May 2013 - August 2013_
 
 - Abstracted C code designed for GIA 1000 (aircraft control systems) to be used on future aircraft.  
 - Extensively tested code to achieve 100% (statement and branch) coverage on all migrated libraries.
@@ -99,7 +99,7 @@ template = "page.html"
 
 ### B.S.E Computer Engineering
 
-**[University of Nebraska, Lincoln](https://unl.edu)** - _August 2011 - May 2015_
+**[University of Nebraska, Lincoln](https://www.unl.edu/)** - _August 2011 - May 2015_
 
 - B.S.E. in Computer Engineering with Minor in Business. GPA: 3.8.
 - Jeffrey Raikes School of Computer Science and Business (cohort of 20) and University Honors. 

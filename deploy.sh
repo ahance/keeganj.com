@@ -1,6 +1,7 @@
 #!/bin/sh
+set -eux
 
-zola check
+# zola check # Fails on linkedin link.
 zola build
 git add .
 git commit -m "$1"

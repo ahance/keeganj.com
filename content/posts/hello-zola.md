@@ -8,7 +8,7 @@ It seems most engineers spend more time tinkering with how their blog works than
 
 Wait, wait, don't go. This one's written in _**Rust**_.
 
-It strictly adheres to the idea of containing it's functionality within a single executable. It's written and maintained by an [opinionated author](https://github.com/getzola/zola#-explanations). As every SSG seems to claim nowadays, it's fast. Unlike most of them, Zola is actually, blazingly fast.
+It strictly adheres to the idea of containing it's functionality within a single executable. It's written and maintained by an [opinionated author](https://github.com/getzola/zola/blob/master/README.md). As every SSG seems to claim nowadays, it's fast. Unlike most of them, Zola is actually, blazingly fast.
 
 The main benefit to me is that it's not written in javascript. As much as I love javascript and it's expansive ecosystem, I'm trying my best to reduce my dependency on it. Not every site that displays content needs to be interactive after all, and I believe there's value in seeing a site that does more than just get all greens on a Google Lighthouse test. I want to be able to write sites that can display their content _instantly_, and the easiest way to do that is to take a break from my old friend JS.
 
