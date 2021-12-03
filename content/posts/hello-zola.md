@@ -16,7 +16,7 @@ I don't know Rust. It's not that I don't want to know it, but moreso that I have
 
 Like every programmer and his dog I've made my way through at at least a few tutorials from the [Rust book](https://doc.rust-lang.org/stable/book/). Zola seemed like a nice way to eventually give myself a reason to ford past the chapter on [References and Borrowing](https://doc.rust-lang.org/stable/book/ch04-02-references-and-borrowing.html). In the meantime I hoped that not knowing how the internals of the generator worked would keep me from tinkering with it and focus on my site's content.
 
-So, in and effort to reduce my time spent tinkering, I spent a few hours tinkering to rewrite my site with Zola. Here's what's different:
+So, in an effort to reduce my time spent tinkering, I spent a few hours tinkering to rewrite my site with Zola. Here's what's different:
 
 - I wrote the theme from scratch. I'm not a designer by trade, but over the past year I've been trying to learn more ways to express my engineering ideologies through visual design. That's a flowery way of saying I wrote all the CSS for this one and didn't use a theme. If you use [Monokai](https://monokai.pro/) in your editor you'll recognize most of the colors here.
 - There's no JS. It's all just HTML and CSS. While most of the code I write is in JS or Typescript, I think there's value in being able to write useful websites without it.

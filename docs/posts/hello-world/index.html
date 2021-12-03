@@ -66,16 +66,16 @@
 <li><a rel="noopener" target="_blank" href="https://pages.github.com/"><strong>Github Pages</strong></a> - Simple and free static site hosting straight from Github. Hexo has the ability to deploy the rendered site via git, and Github is more than willing to accept pushes to deploy.</li>
 <li><a rel="noopener" target="_blank" href="https://www.npmjs.com/package/hexo-generator-search"><strong>hexo-generator-search</strong></a> - A local search generator for hexo that makes instant searches work on a static site. Props for the smooth integration with Cactus.</li>
 </ul>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#66d9ef;">setInterval</span><span style="color:#f8f8f2;">(() </span><span style="font-style:italic;color:#66d9ef;">=&gt; </span><span style="color:#f8f8f2;">{
-    </span><span style="font-style:italic;color:#66d9ef;">const </span><span style="color:#f8f8f2;">post </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getBlogPost</span><span style="color:#f8f8f2;">();
-    blog.</span><span style="color:#66d9ef;">write</span><span style="color:#f8f8f2;">(post);
-}, </span><span style="color:#ae81ff;">1000</span><span style="color:#f8f8f2;">);
-
-</span><span style="font-style:italic;color:#66d9ef;">function </span><span style="color:#a6e22e;">getBlogPost</span><span style="color:#f8f8f2;">() {
-    </span><span style="color:#75715e;">// TODO
-</span><span style="color:#f8f8f2;">}
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#66d9ef;">setInterval</span><span>(() </span><span style="font-style:italic;color:#66d9ef;">=&gt; </span><span>{
+</span><span>    </span><span style="font-style:italic;color:#66d9ef;">const </span><span>post </span><span style="color:#f92672;">= </span><span style="color:#a6e22e;">getBlogPost</span><span>();
+</span><span>    blog.</span><span style="color:#66d9ef;">write</span><span>(post);
+</span><span>}, </span><span style="color:#ae81ff;">1000</span><span>);
+</span><span>
+</span><span style="font-style:italic;color:#66d9ef;">function </span><span style="color:#a6e22e;">getBlogPost</span><span>() {
+</span><span>    </span><span style="color:#75715e;">// TODO
+</span><span>}
 </span></code></pre>
+
 </div>
 
 <div class="revision-history">

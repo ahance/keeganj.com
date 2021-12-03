@@ -89,35 +89,32 @@
 <p>After some googling I came across <a rel="noopener" target="_blank" href="https://www.citusdata.com/blog/2016/10/12/count-performance">this excellent article by Citus Data</a>, which goes over strategies for efficently calculating and estimating counts on large tables. If your use case is in any way different than mine, I would suggest consulting that article first for a solution that better fits your needs. In it they cite an old trick for getting a rough estimate of the outcome of a query: Parsing the output of the <code>EXPLAIN</code> command.</p>
 <p>For those not familiar, <code>EXPLAIN</code> is PostgreSQL's way of letting you know how it plans to execute your query. By itself it's an excellent tool for debugging long running queries and finding ways of speeding them up. Without adding the keyword <code>ANALYZE</code>, it doesn't actually perform your query, it only exposes how it <em>plans</em> to get the result. PostgreSQL uses a set of <a rel="noopener" target="_blank" href="https://www.postgresql.org/docs/10/row-estimation-examples.html">clever techniques</a> to estimate the impact of an action before it performs it, which is necessary for the query to be executed efficiently. </p>
 <p>This is great for us, since it means that a highly supported and optomized portion of PostgreSQL is already doing the work of estimating the cost of each part of our query. We just need to glean the number of rows it thinks will be returned:</p>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#f92672;">CREATE FUNCTION </span><span style="color:#a6e22e;">count_estimate</span><span style="color:#f8f8f2;">(query </span><span style="font-style:italic;color:#66d9ef;">text</span><span style="color:#f8f8f2;">) RETURNS </span><span style="font-style:italic;color:#66d9ef;">integer </span><span style="color:#f92672;">AS</span><span style="color:#f8f8f2;"> $$
-DECLARE
-    rec   record;
-    rows  </span><span style="font-style:italic;color:#66d9ef;">integer</span><span style="color:#f8f8f2;">;
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#f92672;">CREATE FUNCTION </span><span style="color:#a6e22e;">count_estimate</span><span>(query </span><span style="font-style:italic;color:#66d9ef;">text</span><span>) RETURNS </span><span style="font-style:italic;color:#66d9ef;">integer </span><span style="color:#f92672;">AS</span><span> $$
+</span><span>DECLARE
+</span><span>    rec   record;
+</span><span>    rows  </span><span style="font-style:italic;color:#66d9ef;">integer</span><span>;
 </span><span style="color:#f92672;">BEGIN
-</span><span style="color:#f8f8f2;">    FOR rec </span><span style="color:#f92672;">IN</span><span style="color:#f8f8f2;"> EXECUTE </span><span style="color:#e6db74;">&#39;EXPLAIN &#39; </span><span style="color:#f92672;">||</span><span style="color:#f8f8f2;"> query LOOP
-        rows :</span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">substring</span><span style="color:#f8f8f2;">(rec.</span><span style="color:#e6db74;">&quot;QUERY PLAN&quot; </span><span style="color:#f92672;">FROM </span><span style="color:#e6db74;">&#39; rows=([[:digit:]]+)&#39;</span><span style="color:#f8f8f2;">);
-        EXIT </span><span style="color:#f92672;">WHEN</span><span style="color:#f8f8f2;"> rows </span><span style="color:#f92672;">IS NOT </span><span style="color:#ae81ff;">NULL</span><span style="color:#f8f8f2;">;
-    </span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;"> LOOP;
-
-    RETURN rows;
-</span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">;
-$$ LANGUAGE plpgsql VOLATILE STRICT;
+</span><span>    FOR rec </span><span style="color:#f92672;">IN</span><span> EXECUTE </span><span style="color:#e6db74;">&#39;EXPLAIN &#39; </span><span style="color:#f92672;">||</span><span> query LOOP
+</span><span>        rows :</span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">substring</span><span>(rec.</span><span style="color:#e6db74;">&quot;QUERY PLAN&quot; </span><span style="color:#f92672;">FROM </span><span style="color:#e6db74;">&#39; rows=([[:digit:]]+)&#39;</span><span>);
+</span><span>        EXIT </span><span style="color:#f92672;">WHEN</span><span> rows </span><span style="color:#f92672;">IS NOT </span><span style="color:#ae81ff;">NULL</span><span>;
+</span><span>    </span><span style="color:#f92672;">END</span><span> LOOP;
+</span><span>
+</span><span>    RETURN rows;
+</span><span style="color:#f92672;">END</span><span>;
+</span><span>$$ LANGUAGE plpgsql VOLATILE STRICT;
 </span></code></pre>
 <p><em><a rel="noopener" target="_blank" href="https://www.postgresql.org/message-id/20050810133157.GA46247@winnie.fuhr.org">Credit to Mike Fuhr</a> for authoring and posting this to the PostgreSQL mailing list.</em></p>
 <p>Note that in order to use this function we need to pass in our query as text. Depending on how you invoke your SQL queries, that may put an upper limit on how complex of a query you want to feed into this function. Given that the resulting estimate will vary more widely the more complex your query is, being constrained to small and simple queries could be a good thing.</p>
 <h2 id="testing-the-happy-path"><a class="zola-anchor" href="#testing-the-happy-path" aria-label="Anchor link for: testing-the-happy-path">#</a>Testing the Happy Path</h2>
 <p>Using a table of about 52 million rows, I ran a benchmark to see how much of a difference using estimates would make. (All row numbers below have been slightly fuzzed but ratios have been preserved).</p>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#75715e;">-- Control
-</span><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">COUNT</span><span style="color:#f8f8f2;">(*) </span><span style="color:#f92672;">FROM</span><span style="color:#f8f8f2;"> large_table </span><span style="color:#f92672;">WHERE</span><span style="color:#f8f8f2;"> condition; 
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#75715e;">-- Control
+</span><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">COUNT</span><span>(*) </span><span style="color:#f92672;">FROM</span><span> large_table </span><span style="color:#f92672;">WHERE</span><span> condition; 
 </span></code></pre>
 <p>Running the above returns a count of 52,652,307 rows in 1m:24s. Longer than I'd want to wait around for a result, but it's a big table.</p>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#75715e;">-- Experimental
-</span><span style="color:#f92672;">SELECT</span><span style="color:#f8f8f2;"> count_estimate(
-  </span><span style="color:#e6db74;">&#39;SELECT * FROM large_table WHERE condition&#39;
-</span><span style="color:#f8f8f2;">); 
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#75715e;">-- Experimental
+</span><span style="color:#f92672;">SELECT</span><span> count_estimate(
+</span><span>  </span><span style="color:#e6db74;">&#39;SELECT * FROM large_table WHERE condition&#39;
+</span><span>); 
 </span></code></pre>
 <p>Running this returns a count of 52,234,432 rows in only took 0.081s. That's <em>much</em> faster:</p>
 <ul>
@@ -128,26 +125,24 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 <h2 id="potential-pitfalls"><a class="zola-anchor" href="#potential-pitfalls" aria-label="Anchor link for: potential-pitfalls">#</a>Potential Pitfalls</h2>
 <p>But wait, it's not all sunshine and roses. While most of the tests I performed on large tables behaved similarly, there was one case where this form of table estimation did not shine: Shrinking tables.</p>
 <p>Let's take a look at a small table on my system that's been emptied out for this test:</p>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">count</span><span style="color:#f8f8f2;">(*) </span><span style="color:#f92672;">FROM</span><span style="color:#f8f8f2;"> small_table;
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">count</span><span>(*) </span><span style="color:#f92672;">FROM</span><span> small_table;
 </span><span style="color:#75715e;">-- Result: 0
-
-</span><span style="color:#f92672;">SELECT</span><span style="color:#f8f8f2;"> count_estimate(
-  </span><span style="color:#e6db74;">&#39;SELECT * FROM small_table&#39;
-</span><span style="color:#f8f8f2;">); 
+</span><span>
+</span><span style="color:#f92672;">SELECT</span><span> count_estimate(
+</span><span>  </span><span style="color:#e6db74;">&#39;SELECT * FROM small_table&#39;
+</span><span>); 
 </span><span style="color:#75715e;">-- Result: 960
 </span></code></pre>
 <p>Wow, that's way off! What happened to my 1% accuracy margin? </p>
 <p>Maybe it's just an issue with a table with 0 rows. What would happen if I were to add 10 rows to my empty table? Would my estimate change?</p>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#f92672;">INSERT INTO</span><span style="color:#f8f8f2;"> small_table (,,,) </span><span style="color:#f92672;">VALUES</span><span style="color:#f8f8f2;"> (,,,), (,,,), ...
-
-</span><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">count</span><span style="color:#f8f8f2;">(*) </span><span style="color:#f92672;">FROM</span><span style="color:#f8f8f2;"> small_table;
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#f92672;">INSERT INTO</span><span> small_table (,,,) </span><span style="color:#f92672;">VALUES</span><span> (,,,), (,,,), ...
+</span><span>
+</span><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">count</span><span>(*) </span><span style="color:#f92672;">FROM</span><span> small_table;
 </span><span style="color:#75715e;">-- Result: 10 
-
-</span><span style="color:#f92672;">SELECT</span><span style="color:#f8f8f2;"> count_estimate(
-  </span><span style="color:#e6db74;">&#39;SELECT * FROM small_table&#39;
-</span><span style="color:#f8f8f2;">); 
+</span><span>
+</span><span style="color:#f92672;">SELECT</span><span> count_estimate(
+</span><span>  </span><span style="color:#e6db74;">&#39;SELECT * FROM small_table&#39;
+</span><span>); 
 </span><span style="color:#75715e;">-- Result: 960
 </span></code></pre>
 <p>Hmm, no change. Where does 960 come from? Let's go back to that list of <a rel="noopener" target="_blank" href="https://www.postgresql.org/docs/10/row-estimation-examples.html">clever techniques</a> in the PostgreSQL docs...</p>
@@ -155,15 +150,14 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 <p>The number of pages and rows is looked up in pg_class... These numbers are current as of the last VACUUM or ANALYZE on the table. The planner then fetches the actual current number of pages in the table (this is a cheap operation, not requiring a table scan). If that is different from relpages then reltuples is scaled accordingly to arrive at a current number-of-rows estimate.</p>
 </blockquote>
 <p>OK, so what happens if call <code>VACUUM</code> beforehand?</p>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#f8f8f2;">VACUUM small_table;
-
-</span><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">count</span><span style="color:#f8f8f2;">(*) </span><span style="color:#f92672;">FROM</span><span style="color:#f8f8f2;"> small_table;
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span>VACUUM small_table;
+</span><span>
+</span><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">count</span><span>(*) </span><span style="color:#f92672;">FROM</span><span> small_table;
 </span><span style="color:#75715e;">-- 10
-
-</span><span style="color:#f92672;">SELECT</span><span style="color:#f8f8f2;"> count_estimate(
-  </span><span style="color:#e6db74;">&#39;SELECT * FROM small_table&#39;
-</span><span style="color:#f8f8f2;">); 
+</span><span>
+</span><span style="color:#f92672;">SELECT</span><span> count_estimate(
+</span><span>  </span><span style="color:#e6db74;">&#39;SELECT * FROM small_table&#39;
+</span><span>); 
 </span><span style="color:#75715e;">-- 10
 </span></code></pre>
 <p>That's more like it.</p>
@@ -175,37 +169,37 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 <li>If you have a massive table and that does have rows regularly added or deleted in significant quantities, using the above <code>count_estimate</code> function could save you a lot of time and resources.</li>
 <li><strong>But</strong> if your table has rows added and/or deleted in quantities you would care to see reflected quickly in an estimate and you'd rather not manually <code>VACUUM</code>, use another technique.</li>
 </ul>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#75715e;">-- count_estimate.sql
-
-</span><span style="color:#f92672;">CREATE FUNCTION </span><span style="color:#a6e22e;">count_estimate</span><span style="color:#f8f8f2;">(query </span><span style="font-style:italic;color:#66d9ef;">text</span><span style="color:#f8f8f2;">) RETURNS </span><span style="font-style:italic;color:#66d9ef;">integer </span><span style="color:#f92672;">AS</span><span style="color:#f8f8f2;"> $$
-DECLARE
-  rec   record;
-  rows  </span><span style="font-style:italic;color:#66d9ef;">integer</span><span style="color:#f8f8f2;">;
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span style="color:#75715e;">-- count_estimate.sql
+</span><span>
+</span><span style="color:#f92672;">CREATE FUNCTION </span><span style="color:#a6e22e;">count_estimate</span><span>(query </span><span style="font-style:italic;color:#66d9ef;">text</span><span>) RETURNS </span><span style="font-style:italic;color:#66d9ef;">integer </span><span style="color:#f92672;">AS</span><span> $$
+</span><span>DECLARE
+</span><span>  rec   record;
+</span><span>  rows  </span><span style="font-style:italic;color:#66d9ef;">integer</span><span>;
 </span><span style="color:#f92672;">BEGIN
-</span><span style="color:#f8f8f2;">  FOR rec </span><span style="color:#f92672;">IN</span><span style="color:#f8f8f2;"> EXECUTE </span><span style="color:#e6db74;">&#39;EXPLAIN &#39; </span><span style="color:#f92672;">||</span><span style="color:#f8f8f2;"> query LOOP
-    rows :</span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">substring</span><span style="color:#f8f8f2;">(rec.</span><span style="color:#e6db74;">&quot;QUERY PLAN&quot; </span><span style="color:#f92672;">FROM </span><span style="color:#e6db74;">&#39; rows=([[:digit:]]+)&#39;</span><span style="color:#f8f8f2;">);
-    EXIT </span><span style="color:#f92672;">WHEN</span><span style="color:#f8f8f2;"> rows </span><span style="color:#f92672;">IS NOT </span><span style="color:#ae81ff;">NULL</span><span style="color:#f8f8f2;">;
-  </span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;"> LOOP;
-  RETURN rows;
-</span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">;
-$$ LANGUAGE plpgsql VOLATILE STRICT;
-
+</span><span>  FOR rec </span><span style="color:#f92672;">IN</span><span> EXECUTE </span><span style="color:#e6db74;">&#39;EXPLAIN &#39; </span><span style="color:#f92672;">||</span><span> query LOOP
+</span><span>    rows :</span><span style="color:#f92672;">= </span><span style="color:#66d9ef;">substring</span><span>(rec.</span><span style="color:#e6db74;">&quot;QUERY PLAN&quot; </span><span style="color:#f92672;">FROM </span><span style="color:#e6db74;">&#39; rows=([[:digit:]]+)&#39;</span><span>);
+</span><span>    EXIT </span><span style="color:#f92672;">WHEN</span><span> rows </span><span style="color:#f92672;">IS NOT </span><span style="color:#ae81ff;">NULL</span><span>;
+</span><span>  </span><span style="color:#f92672;">END</span><span> LOOP;
+</span><span>  RETURN rows;
+</span><span style="color:#f92672;">END</span><span>;
+</span><span>$$ LANGUAGE plpgsql VOLATILE STRICT;
+</span><span>
 </span><span style="color:#75715e;">-- Testing --
-
--- Control
-</span><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">COUNT</span><span style="color:#f8f8f2;">(*) </span><span style="color:#f92672;">FROM</span><span style="color:#f8f8f2;"> large_table </span><span style="color:#f92672;">WHERE</span><span style="color:#f8f8f2;"> condition; 
+</span><span>
+</span><span style="color:#75715e;">-- Control
+</span><span style="color:#f92672;">SELECT </span><span style="color:#66d9ef;">COUNT</span><span>(*) </span><span style="color:#f92672;">FROM</span><span> large_table </span><span style="color:#f92672;">WHERE</span><span> condition; 
 </span><span style="color:#75715e;">-- 52,652,307 -- 1m:24s
-
--- Experimental
-</span><span style="color:#f92672;">SELECT</span><span style="color:#f8f8f2;"> count_estimate(
-  </span><span style="color:#e6db74;">&#39;SELECT * FROM large_table WHERE condition&#39;
-</span><span style="color:#f8f8f2;">); 
+</span><span>
+</span><span style="color:#75715e;">-- Experimental
+</span><span style="color:#f92672;">SELECT</span><span> count_estimate(
+</span><span>  </span><span style="color:#e6db74;">&#39;SELECT * FROM large_table WHERE condition&#39;
+</span><span>); 
 </span><span style="color:#75715e;">-- 52,234,432 -- 0m:00.081s
-
--- 0.8%      difference in result
--- 103,704%  difference in runtime
-</span></code></pre><h3 id="further-reading"><a class="zola-anchor" href="#further-reading" aria-label="Anchor link for: further-reading">#</a>Further Reading</h3>
+</span><span>
+</span><span style="color:#75715e;">-- 0.8%      difference in result
+</span><span style="color:#75715e;">-- 103,704%  difference in runtime
+</span></code></pre>
+<h3 id="further-reading"><a class="zola-anchor" href="#further-reading" aria-label="Anchor link for: further-reading">#</a>Further Reading</h3>
 <ul>
 <li><a rel="noopener" target="_blank" href="https://www.citusdata.com/blog/2016/10/12/count-performance#dup_counts_estimated_filtered">&quot;Faster PostgreSQL Counting&quot; - citusdata.com</a></li>
 <li><a rel="noopener" target="_blank" href="https://www.postgresql.org/docs/10/row-estimation-examples.html">&quot;Row Estimation Examples&quot; - postgresql.org</a></li>

@@ -13,94 +13,86 @@
 		<updated>2021-07-27T00:00:00+00:00</updated>
 		<link href="https://keeganj.com/posts/infinity-and-negative-zero-in-javascript/" type="text/html"/>
 		<id>https://keeganj.com/posts/infinity-and-negative-zero-in-javascript/</id>
-		<content type="html">&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-Infinity
-
+		<content type="html">&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;* -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Yesterday I learned about the concepts of the global constant &lt;code&gt;Infinity&lt;&#x2F;code&gt; and the existince of &lt;code&gt;-0&lt;&#x2F;code&gt; in Javascript. Despite working with the language for most of my career, it still finds ways to suprise me.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;infinity&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#infinity&quot; aria-label=&quot;Anchor link for: infinity&quot;&gt;#&lt;&#x2F;a&gt;Infinity&lt;&#x2F;h2&gt;
 &lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;docs&#x2F;Web&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;Infinity&quot;&gt;&lt;code&gt;Infinity&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; is a globally defined constant in the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;262.ecma-international.org&#x2F;5.1&#x2F;#sec-4.3.22&quot;&gt;ECMAScript 5 specification&lt;&#x2F;a&gt;. It&#x27;s nice to have a mathmatical guarentee of largeness, rather than having to use &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;docs&#x2F;Web&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;Number&#x2F;MAX_SAFE_INTEGER&quot;&gt;&lt;code&gt;Number.MAX_SAFE_INTEGER&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; and account for any edge cases. It&#x27;s also handy to have around to represent the outcome of what would otherwise be mathmatical party crashers in other languages, like dividing by zero.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-Infinity
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;Number&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;.MAX_SAFE_INTEGER
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;Number&lt;&#x2F;span&gt;&lt;span&gt;.MAX_SAFE_INTEGER
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;true
-
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-NaN
-
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;NaN
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-NaN
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;NaN
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;&lt;code&gt;Infinity&lt;&#x2F;code&gt; also has it&#x27;s mirror, &lt;code&gt;-Infinity&lt;&#x2F;code&gt; (Or &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;docs&#x2F;Web&#x2F;JavaScript&#x2F;Reference&#x2F;Global_Objects&#x2F;Number&#x2F;NEGATIVE_INFINITY&quot;&gt;&lt;code&gt;Number.NEGATIVE_INFINITY&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; if you&#x27;d rather not trust the negative sign next to a constant). Handy when you&#x27;re doing comparisons in the negative direciton.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;Number&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;.MIN_SAFE_INTEGER
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;Number&lt;&#x2F;span&gt;&lt;span&gt;.MIN_SAFE_INTEGER
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;true
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Treating &lt;code&gt;Infinity&lt;&#x2F;code&gt; as a number will solve some problems, but could cause others depending on how you use it. &lt;code&gt;Infinity &#x2F; Infinity&lt;&#x2F;code&gt; is labeled as &lt;code&gt;NaN&lt;&#x2F;code&gt;, which while &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;math.stackexchange.com&#x2F;questions&#x2F;181304&#x2F;what-is-infinity-divided-by-infinity&quot;&gt;arguably true in a mathmatical sense&lt;&#x2F;a&gt; doesn&#x27;t really hold if Infinity is a number. If you divided &lt;code&gt;Number.MAX_SAFE_INTEGER&lt;&#x2F;code&gt; by itself after all, you&#x27;d still get &lt;code&gt;1&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-Infinity
-
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
-NaN
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;NaN
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Stringifying &lt;code&gt;Infinity&lt;&#x2F;code&gt; can be a sensitive endeavor. String interpolation yeilds &lt;code&gt;&amp;quot;Infinity&amp;quot;&lt;&#x2F;code&gt;, while JSON stringifying strangely yields &lt;code&gt;&amp;quot;null&amp;quot;&lt;&#x2F;code&gt;. Pay attention to how your results are serialized.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;JSON&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;stringify&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;)
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;JSON&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;stringify&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity&lt;&#x2F;span&gt;&lt;span&gt;)
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;quot;null&amp;quot;
-
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;`${&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;}`
-&amp;quot;Infinity&amp;quot;
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;negative-zero&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#negative-zero&quot; aria-label=&quot;Anchor link for: negative-zero&quot;&gt;#&lt;&#x2F;a&gt;Negative zero&lt;&#x2F;h2&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;quot;Infinity&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;negative-zero&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#negative-zero&quot; aria-label=&quot;Anchor link for: negative-zero&quot;&gt;#&lt;&#x2F;a&gt;Negative zero&lt;&#x2F;h2&gt;
 &lt;p&gt;While its &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;math.stackexchange.com&#x2F;questions&#x2F;667577&#x2F;does-negative-zero-exist&quot;&gt;arguable whenter negative zero exists as a mathmatical concept&lt;&#x2F;a&gt;, it most definitely exists in Javascript. You can obtain negative zero through any multiplication or division operation with zero that would yeild a negative with any other number, and remove it by repeating the operation.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;* -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;* -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1
-0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Unlike infinity, the negative aspect of &lt;code&gt;-0&lt;&#x2F;code&gt; won&#x27;t usually survive stringification.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;JSON&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;stringify&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;);
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;JSON&lt;&#x2F;span&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;stringify&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;);
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;quot;0&amp;quot;
-
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;`${&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;}`
-&amp;quot;0&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;quot;0&amp;quot;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;While I&#x27;m having a tough time replicating it, I have seen &lt;code&gt;-0&lt;&#x2F;code&gt; preserved in rendered html in a React application. If you happen to know of other situations where &lt;code&gt;-0&lt;&#x2F;code&gt; can be stringified, I&#x27;d be interested to hear.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;code&gt;-0&lt;&#x2F;code&gt; has the odd property of being &lt;em&gt;strictly&lt;&#x2F;em&gt; equal to (positive) &lt;code&gt;0&lt;&#x2F;code&gt;. This makes it the only non-identity strictly equal relationship that I know about in JS. It can also make it hard to detect if you want to account for it in an edge case.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;=== -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-true
-
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;=== -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;* -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-true
-
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;* -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0
-true
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;true
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;If you do want to test for &lt;code&gt;-0&lt;&#x2F;code&gt;, you can use division to yield either &lt;code&gt;Infinity&lt;&#x2F;code&gt; or &lt;code&gt;-Infinity&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
-true
-
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;true
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;=== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
-false
-
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;false
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;&#x2F; -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;=== -&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;Infinity
-true
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;true
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Next time a number mysteriously becomes negative in your algorithm, be sure to check the zeros.&lt;&#x2F;p&gt;
 </content>
@@ -111,31 +103,28 @@ true
 		<updated>2021-06-03T00:00:00+00:00</updated>
 		<link href="https://keeganj.com/posts/testing-postgresql-statements-for-syntax-errors-without-running-them/" type="text/html"/>
 		<id>https://keeganj.com/posts/testing-postgresql-statements-for-syntax-errors-without-running-them/</id>
-		<content type="html">&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; RETURN;
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- &amp;lt;Your code here&amp;gt;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;; $TEST$;
+		<content type="html">&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span&gt; RETURN;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- &amp;lt;Your code here&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span&gt;; $TEST$;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The easiest way to test most SQL queries is to run them. Feedback is immediate. It&#x27;s easy to rapidly iterate on results until the query returns what you&#x27;re looking for.&lt;&#x2F;p&gt;
 &lt;p&gt;Sometimes you may only want to give your query a dry run. Maybe you&#x27;re developing an insert statement that you&#x27;d rather not run every time to test. Maybe you&#x27;re working on a parameterized query and don&#x27;t want to think about test data. You should be able to test if your query is valid just as quickly as you test simple &lt;code&gt;SELECT&lt;&#x2F;code&gt; queries.&lt;&#x2F;p&gt;
 &lt;p&gt;The simple trick is to surround your statement in a short circuited &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.postgresql.org&#x2F;docs&#x2F;13&#x2F;sql-do.html&quot;&gt;anonymous code block&lt;&#x2F;a&gt;. This allows the query parser to read the full block of code as if it were to execute, without actually executing it. An immediate &lt;code&gt;RETURN&lt;&#x2F;code&gt; statement stops any of your code from executing.&lt;&#x2F;p&gt;
 &lt;p&gt;Let&#x27;s test it out:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; RETURN;
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;INSERT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; INO users (id, email) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;VALUES&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; ($&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;, $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;);
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;; $TEST$;
-
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span&gt; RETURN;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;INSERT&lt;&#x2F;span&gt;&lt;span&gt; INO users (id, email) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;VALUES&lt;&#x2F;span&gt;&lt;span&gt; ($&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;, $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;2&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span&gt;; $TEST$;
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Query 1 ERROR: ERROR:  syntax error at or near &amp;quot;INO&amp;quot;
--- LINE 2:   INSERT INO users (id, email) VALUES ($1, $2);
---                  ^
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- LINE 2:   INSERT INO users (id, email) VALUES ($1, $2);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;--                  ^
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Here we are able to check an insert statement for syntax errors. We didn&#x27;t need to worry about side effects from testing our statement. We also didn&#x27;t have to supply it with example parameters. Instead the parser helpfully pointed out our error.&lt;&#x2F;p&gt;
 &lt;p&gt;Now that we know what&#x27;s wrong, let&#x27;s see what happens when our syntax is correct:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; RETURN;
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;INSERT INTO&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; accounts (id, email) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;VALUES&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; ($&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;, $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;);
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;; $TEST$;
-
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span&gt;DO $TEST$ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN&lt;&#x2F;span&gt;&lt;span&gt; RETURN;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;INSERT INTO&lt;&#x2F;span&gt;&lt;span&gt; accounts (id, email) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;VALUES&lt;&#x2F;span&gt;&lt;span&gt; ($&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;, $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;2&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span&gt;; $TEST$;
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Query 1 OK: DO
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The &lt;code&gt;OK: DO&lt;&#x2F;code&gt; result returned informs us that our statement executed without a hitch. What it doesn&#x27;t know is that only the &lt;code&gt;RETURN&lt;&#x2F;code&gt; statement at the head executed. While the rest of our syntax was correct, none of it actually ran.&lt;&#x2F;p&gt;
@@ -154,7 +143,7 @@ true
 &lt;p&gt;The main benefit to me is that it&#x27;s not written in javascript. As much as I love javascript and it&#x27;s expansive ecosystem, I&#x27;m trying my best to reduce my dependency on it. Not every site that displays content needs to be interactive after all, and I believe there&#x27;s value in seeing a site that does more than just get all greens on a Google Lighthouse test. I want to be able to write sites that can display their content &lt;em&gt;instantly&lt;&#x2F;em&gt;, and the easiest way to do that is to take a break from my old friend JS.&lt;&#x2F;p&gt;
 &lt;p&gt;I don&#x27;t know Rust. It&#x27;s not that I don&#x27;t want to know it, but moreso that I haven&#x27;t gotten a good reason to learn it yet. Even though I graduated with a degree in Computer Engineering and had my later classes in low level languages and circuits, I haven&#x27;t touched hardware since I left school. The market has kept me in fullstack web development since graduation. Despite that, I would &lt;em&gt;love&lt;&#x2F;em&gt; to have a reason to learn a low level language again. &lt;&#x2F;p&gt;
 &lt;p&gt;Like every programmer and his dog I&#x27;ve made my way through at at least a few tutorials from the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;&quot;&gt;Rust book&lt;&#x2F;a&gt;. Zola seemed like a nice way to eventually give myself a reason to ford past the chapter on &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;ch04-02-references-and-borrowing.html&quot;&gt;References and Borrowing&lt;&#x2F;a&gt;. In the meantime I hoped that not knowing how the internals of the generator worked would keep me from tinkering with it and focus on my site&#x27;s content.&lt;&#x2F;p&gt;
-&lt;p&gt;So, in and effort to reduce my time spent tinkering, I spent a few hours tinkering to rewrite my site with Zola. Here&#x27;s what&#x27;s different:&lt;&#x2F;p&gt;
+&lt;p&gt;So, in an effort to reduce my time spent tinkering, I spent a few hours tinkering to rewrite my site with Zola. Here&#x27;s what&#x27;s different:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;I wrote the theme from scratch. I&#x27;m not a designer by trade, but over the past year I&#x27;ve been trying to learn more ways to express my engineering ideologies through visual design. That&#x27;s a flowery way of saying I wrote all the CSS for this one and didn&#x27;t use a theme. If you use &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;monokai.pro&#x2F;&quot;&gt;Monokai&lt;&#x2F;a&gt; in your editor you&#x27;ll recognize most of the colors here.&lt;&#x2F;li&gt;
 &lt;li&gt;There&#x27;s no JS. It&#x27;s all just HTML and CSS. While most of the code I write is in JS or Typescript, I think there&#x27;s value in being able to write useful websites without it.&lt;&#x2F;li&gt;
@@ -180,35 +169,32 @@ true
 &lt;p&gt;After some googling I came across &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.citusdata.com&#x2F;blog&#x2F;2016&#x2F;10&#x2F;12&#x2F;count-performance&quot;&gt;this excellent article by Citus Data&lt;&#x2F;a&gt;, which goes over strategies for efficently calculating and estimating counts on large tables. If your use case is in any way different than mine, I would suggest consulting that article first for a solution that better fits your needs. In it they cite an old trick for getting a rough estimate of the outcome of a query: Parsing the output of the &lt;code&gt;EXPLAIN&lt;&#x2F;code&gt; command.&lt;&#x2F;p&gt;
 &lt;p&gt;For those not familiar, &lt;code&gt;EXPLAIN&lt;&#x2F;code&gt; is PostgreSQL&#x27;s way of letting you know how it plans to execute your query. By itself it&#x27;s an excellent tool for debugging long running queries and finding ways of speeding them up. Without adding the keyword &lt;code&gt;ANALYZE&lt;&#x2F;code&gt;, it doesn&#x27;t actually perform your query, it only exposes how it &lt;em&gt;plans&lt;&#x2F;em&gt; to get the result. PostgreSQL uses a set of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.postgresql.org&#x2F;docs&#x2F;10&#x2F;row-estimation-examples.html&quot;&gt;clever techniques&lt;&#x2F;a&gt; to estimate the impact of an action before it performs it, which is necessary for the query to be executed efficiently. &lt;&#x2F;p&gt;
 &lt;p&gt;This is great for us, since it means that a highly supported and optomized portion of PostgreSQL is already doing the work of estimating the cost of each part of our query. We just need to glean the number of rows it thinks will be returned:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;CREATE FUNCTION &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;count_estimate&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(query &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;text&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;) RETURNS &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;integer &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;AS&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; $$
-DECLARE
-    rec   record;
-    rows  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;integer&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;;
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;CREATE FUNCTION &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;count_estimate&lt;&#x2F;span&gt;&lt;span&gt;(query &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;text&lt;&#x2F;span&gt;&lt;span&gt;) RETURNS &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;integer &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;AS&lt;&#x2F;span&gt;&lt;span&gt; $$
+&lt;&#x2F;span&gt;&lt;span&gt;DECLARE
+&lt;&#x2F;span&gt;&lt;span&gt;    rec   record;
+&lt;&#x2F;span&gt;&lt;span&gt;    rows  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;integer&lt;&#x2F;span&gt;&lt;span&gt;;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;    FOR rec &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;IN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; EXECUTE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;EXPLAIN &amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;||&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; query LOOP
-        rows :&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;substring&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(rec.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;quot;QUERY PLAN&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39; rows=([[:digit:]]+)&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;);
-        EXIT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;WHEN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; rows &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;IS NOT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;NULL&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;;
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; LOOP;
-
-    RETURN rows;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;;
-$$ LANGUAGE plpgsql VOLATILE STRICT;
+&lt;&#x2F;span&gt;&lt;span&gt;    FOR rec &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;IN&lt;&#x2F;span&gt;&lt;span&gt; EXECUTE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;EXPLAIN &amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;||&lt;&#x2F;span&gt;&lt;span&gt; query LOOP
+&lt;&#x2F;span&gt;&lt;span&gt;        rows :&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;substring&lt;&#x2F;span&gt;&lt;span&gt;(rec.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;quot;QUERY PLAN&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39; rows=([[:digit:]]+)&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;        EXIT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;WHEN&lt;&#x2F;span&gt;&lt;span&gt; rows &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;IS NOT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;NULL&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span&gt; LOOP;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    RETURN rows;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;$$ LANGUAGE plpgsql VOLATILE STRICT;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;&lt;em&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.postgresql.org&#x2F;message-id&#x2F;20050810133157.GA46247@winnie.fuhr.org&quot;&gt;Credit to Mike Fuhr&lt;&#x2F;a&gt; for authoring and posting this to the PostgreSQL mailing list.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;Note that in order to use this function we need to pass in our query as text. Depending on how you invoke your SQL queries, that may put an upper limit on how complex of a query you want to feed into this function. Given that the resulting estimate will vary more widely the more complex your query is, being constrained to small and simple queries could be a good thing.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;testing-the-happy-path&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#testing-the-happy-path&quot; aria-label=&quot;Anchor link for: testing-the-happy-path&quot;&gt;#&lt;&#x2F;a&gt;Testing the Happy Path&lt;&#x2F;h2&gt;
 &lt;p&gt;Using a table of about 52 million rows, I ran a benchmark to see how much of a difference using estimates would make. (All row numbers below have been slightly fuzzed but ratios have been preserved).&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Control
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;COUNT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; large_table &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;WHERE&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; condition; 
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Control
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;COUNT&lt;&#x2F;span&gt;&lt;span&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span&gt; large_table &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;WHERE&lt;&#x2F;span&gt;&lt;span&gt; condition; 
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Running the above returns a count of 52,652,307 rows in 1m:24s. Longer than I&#x27;d want to wait around for a result, but it&#x27;s a big table.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Experimental
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; count_estimate(
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM large_table WHERE condition&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;); 
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Experimental
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span&gt; count_estimate(
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM large_table WHERE condition&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;); 
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Running this returns a count of 52,234,432 rows in only took 0.081s. That&#x27;s &lt;em&gt;much&lt;&#x2F;em&gt; faster:&lt;&#x2F;p&gt;
 &lt;ul&gt;
@@ -219,26 +205,24 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 &lt;h2 id=&quot;potential-pitfalls&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#potential-pitfalls&quot; aria-label=&quot;Anchor link for: potential-pitfalls&quot;&gt;#&lt;&#x2F;a&gt;Potential Pitfalls&lt;&#x2F;h2&gt;
 &lt;p&gt;But wait, it&#x27;s not all sunshine and roses. While most of the tests I performed on large tables behaved similarly, there was one case where this form of table estimation did not shine: Shrinking tables.&lt;&#x2F;p&gt;
 &lt;p&gt;Let&#x27;s take a look at a small table on my system that&#x27;s been emptied out for this test:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;count&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; small_table;
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;count&lt;&#x2F;span&gt;&lt;span&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span&gt; small_table;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Result: 0
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; count_estimate(
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM small_table&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;); 
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span&gt; count_estimate(
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM small_table&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;); 
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Result: 960
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Wow, that&#x27;s way off! What happened to my 1% accuracy margin? &lt;&#x2F;p&gt;
 &lt;p&gt;Maybe it&#x27;s just an issue with a table with 0 rows. What would happen if I were to add 10 rows to my empty table? Would my estimate change?&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;INSERT INTO&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; small_table (,,,) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;VALUES&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; (,,,), (,,,), ...
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;count&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; small_table;
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;INSERT INTO&lt;&#x2F;span&gt;&lt;span&gt; small_table (,,,) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;VALUES&lt;&#x2F;span&gt;&lt;span&gt; (,,,), (,,,), ...
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;count&lt;&#x2F;span&gt;&lt;span&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span&gt; small_table;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Result: 10 
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; count_estimate(
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM small_table&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;); 
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span&gt; count_estimate(
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM small_table&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;); 
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Result: 960
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Hmm, no change. Where does 960 come from? Let&#x27;s go back to that list of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.postgresql.org&#x2F;docs&#x2F;10&#x2F;row-estimation-examples.html&quot;&gt;clever techniques&lt;&#x2F;a&gt; in the PostgreSQL docs...&lt;&#x2F;p&gt;
@@ -246,15 +230,14 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 &lt;p&gt;The number of pages and rows is looked up in pg_class... These numbers are current as of the last VACUUM or ANALYZE on the table. The planner then fetches the actual current number of pages in the table (this is a cheap operation, not requiring a table scan). If that is different from relpages then reltuples is scaled accordingly to arrive at a current number-of-rows estimate.&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
 &lt;p&gt;OK, so what happens if call &lt;code&gt;VACUUM&lt;&#x2F;code&gt; beforehand?&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;VACUUM small_table;
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;count&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; small_table;
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span&gt;VACUUM small_table;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;count&lt;&#x2F;span&gt;&lt;span&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span&gt; small_table;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- 10
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; count_estimate(
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM small_table&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;); 
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span&gt; count_estimate(
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM small_table&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;); 
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- 10
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;That&#x27;s more like it.&lt;&#x2F;p&gt;
@@ -266,37 +249,37 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 &lt;li&gt;If you have a massive table and that does have rows regularly added or deleted in significant quantities, using the above &lt;code&gt;count_estimate&lt;&#x2F;code&gt; function could save you a lot of time and resources.&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;strong&gt;But&lt;&#x2F;strong&gt; if your table has rows added and&#x2F;or deleted in quantities you would care to see reflected quickly in an estimate and you&#x27;d rather not manually &lt;code&gt;VACUUM&lt;&#x2F;code&gt;, use another technique.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- count_estimate.sql
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;CREATE FUNCTION &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;count_estimate&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(query &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;text&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;) RETURNS &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;integer &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;AS&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; $$
-DECLARE
-  rec   record;
-  rows  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;integer&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;;
+&lt;pre data-lang=&quot;sql&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- count_estimate.sql
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;CREATE FUNCTION &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;count_estimate&lt;&#x2F;span&gt;&lt;span&gt;(query &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;text&lt;&#x2F;span&gt;&lt;span&gt;) RETURNS &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;integer &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;AS&lt;&#x2F;span&gt;&lt;span&gt; $$
+&lt;&#x2F;span&gt;&lt;span&gt;DECLARE
+&lt;&#x2F;span&gt;&lt;span&gt;  rec   record;
+&lt;&#x2F;span&gt;&lt;span&gt;  rows  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;integer&lt;&#x2F;span&gt;&lt;span&gt;;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;BEGIN
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;  FOR rec &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;IN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; EXECUTE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;EXPLAIN &amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;||&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; query LOOP
-    rows :&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;substring&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(rec.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;quot;QUERY PLAN&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39; rows=([[:digit:]]+)&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;);
-    EXIT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;WHEN&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; rows &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;IS NOT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;NULL&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;;
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; LOOP;
-  RETURN rows;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;;
-$$ LANGUAGE plpgsql VOLATILE STRICT;
-
+&lt;&#x2F;span&gt;&lt;span&gt;  FOR rec &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;IN&lt;&#x2F;span&gt;&lt;span&gt; EXECUTE &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;EXPLAIN &amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;||&lt;&#x2F;span&gt;&lt;span&gt; query LOOP
+&lt;&#x2F;span&gt;&lt;span&gt;    rows :&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;substring&lt;&#x2F;span&gt;&lt;span&gt;(rec.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;quot;QUERY PLAN&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39; rows=([[:digit:]]+)&amp;#39;&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;    EXIT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;WHEN&lt;&#x2F;span&gt;&lt;span&gt; rows &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;IS NOT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;NULL&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span&gt; LOOP;
+&lt;&#x2F;span&gt;&lt;span&gt;  RETURN rows;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;END&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;$$ LANGUAGE plpgsql VOLATILE STRICT;
+&lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Testing --
-
--- Control
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;COUNT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; large_table &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;WHERE&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; condition; 
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Control
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT &lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;COUNT&lt;&#x2F;span&gt;&lt;span&gt;(*) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;FROM&lt;&#x2F;span&gt;&lt;span&gt; large_table &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;WHERE&lt;&#x2F;span&gt;&lt;span&gt; condition; 
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- 52,652,307 -- 1m:24s
-
--- Experimental
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt; count_estimate(
-  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM large_table WHERE condition&amp;#39;
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;); 
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- Experimental
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;SELECT&lt;&#x2F;span&gt;&lt;span&gt; count_estimate(
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#e6db74;&quot;&gt;&amp;#39;SELECT * FROM large_table WHERE condition&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;); 
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- 52,234,432 -- 0m:00.081s
-
--- 0.8%      difference in result
--- 103,704%  difference in runtime
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;further-reading&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#further-reading&quot; aria-label=&quot;Anchor link for: further-reading&quot;&gt;#&lt;&#x2F;a&gt;Further Reading&lt;&#x2F;h3&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- 0.8%      difference in result
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;-- 103,704%  difference in runtime
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;further-reading&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#further-reading&quot; aria-label=&quot;Anchor link for: further-reading&quot;&gt;#&lt;&#x2F;a&gt;Further Reading&lt;&#x2F;h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.citusdata.com&#x2F;blog&#x2F;2016&#x2F;10&#x2F;12&#x2F;count-performance#dup_counts_estimated_filtered&quot;&gt;&amp;quot;Faster PostgreSQL Counting&amp;quot; - citusdata.com&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.postgresql.org&#x2F;docs&#x2F;10&#x2F;row-estimation-examples.html&quot;&gt;&amp;quot;Row Estimation Examples&amp;quot; - postgresql.org&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
@@ -318,15 +301,15 @@ $$ LANGUAGE plpgsql VOLATILE STRICT;
 &lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;pages.github.com&#x2F;&quot;&gt;&lt;strong&gt;Github Pages&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - Simple and free static site hosting straight from Github. Hexo has the ability to deploy the rendered site via git, and Github is more than willing to accept pushes to deploy.&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;hexo-generator-search&quot;&gt;&lt;strong&gt;hexo-generator-search&lt;&#x2F;strong&gt;&lt;&#x2F;a&gt; - A local search generator for hexo that makes instant searches work on a static site. Props for the smooth integration with Cactus.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
-&lt;pre style=&quot;background-color:#272822;&quot;&gt;
-&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;setInterval&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(() &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;{
-    &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;post &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;getBlogPost&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;();
-    blog.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;(post);
-}, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1000&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;);
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;getBlogPost&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;() {
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;&#x2F;&#x2F; TODO
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f8f8f2;&quot;&gt;}
-&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+&lt;pre data-lang=&quot;js&quot; style=&quot;background-color:#272822;color:#f8f8f2;&quot; class=&quot;language-js &quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;setInterval&lt;&#x2F;span&gt;&lt;span&gt;(() &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;=&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;post &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f92672;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;getBlogPost&lt;&#x2F;span&gt;&lt;span&gt;();
+&lt;&#x2F;span&gt;&lt;span&gt;    blog.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#66d9ef;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(post);
+&lt;&#x2F;span&gt;&lt;span&gt;}, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ae81ff;&quot;&gt;1000&lt;&#x2F;span&gt;&lt;span&gt;);
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#66d9ef;&quot;&gt;function &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a6e22e;&quot;&gt;getBlogPost&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#75715e;&quot;&gt;&#x2F;&#x2F; TODO
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
 	</entry>
 </feed>

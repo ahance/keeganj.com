@@ -70,94 +70,86 @@
 </div>
 
 <div class="body">
-  <pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
-Infinity
-
+  <pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
+</span><span style="color:#ae81ff;">Infinity
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">* -</span><span style="color:#ae81ff;">1
 </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">0
 </span></code></pre>
 <p>Yesterday I learned about the concepts of the global constant <code>Infinity</code> and the existince of <code>-0</code> in Javascript. Despite working with the language for most of my career, it still finds ways to suprise me.</p>
 <h2 id="infinity"><a class="zola-anchor" href="#infinity" aria-label="Anchor link for: infinity">#</a>Infinity</h2>
 <p><a rel="noopener" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity"><code>Infinity</code></a> is a globally defined constant in the <a rel="noopener" target="_blank" href="https://262.ecma-international.org/5.1/#sec-4.3.22">ECMAScript 5 specification</a>. It's nice to have a mathmatical guarentee of largeness, rather than having to use <a rel="noopener" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER"><code>Number.MAX_SAFE_INTEGER</code></a> and account for any edge cases. It's also handy to have around to represent the outcome of what would otherwise be mathmatical party crashers in other languages, like dividing by zero.</p>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
-Infinity
-
-</span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">Infinity </span><span style="color:#f92672;">&gt; </span><span style="font-style:italic;color:#66d9ef;">Number</span><span style="color:#f8f8f2;">.MAX_SAFE_INTEGER
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
+</span><span style="color:#ae81ff;">Infinity
+</span><span>
+</span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">Infinity </span><span style="color:#f92672;">&gt; </span><span style="font-style:italic;color:#66d9ef;">Number</span><span>.MAX_SAFE_INTEGER
 </span><span style="color:#ae81ff;">true
-
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
-NaN
-
+</span><span style="color:#ae81ff;">NaN
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">Infinity </span><span style="color:#f92672;">* </span><span style="color:#ae81ff;">0
-NaN
+</span><span style="color:#ae81ff;">NaN
 </span></code></pre>
 <p><code>Infinity</code> also has it's mirror, <code>-Infinity</code> (Or <a rel="noopener" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY"><code>Number.NEGATIVE_INFINITY</code></a> if you'd rather not trust the negative sign next to a constant). Handy when you're doing comparisons in the negative direciton.</p>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; -</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; -</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
 </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">Infinity
-
-</span><span style="color:#f92672;">&gt; -</span><span style="color:#ae81ff;">Infinity </span><span style="color:#f92672;">&lt; </span><span style="font-style:italic;color:#66d9ef;">Number</span><span style="color:#f8f8f2;">.MIN_SAFE_INTEGER
+</span><span>
+</span><span style="color:#f92672;">&gt; -</span><span style="color:#ae81ff;">Infinity </span><span style="color:#f92672;">&lt; </span><span style="font-style:italic;color:#66d9ef;">Number</span><span>.MIN_SAFE_INTEGER
 </span><span style="color:#ae81ff;">true
 </span></code></pre>
 <p>Treating <code>Infinity</code> as a number will solve some problems, but could cause others depending on how you use it. <code>Infinity / Infinity</code> is labeled as <code>NaN</code>, which while <a rel="noopener" target="_blank" href="https://math.stackexchange.com/questions/181304/what-is-infinity-divided-by-infinity">arguably true in a mathmatical sense</a> doesn't really hold if Infinity is a number. If you divided <code>Number.MAX_SAFE_INTEGER</code> by itself after all, you'd still get <code>1</code>.</p>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">Infinity </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
-Infinity
-
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">Infinity </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0
+</span><span style="color:#ae81ff;">Infinity
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">Infinity </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">Infinity
-NaN
+</span><span style="color:#ae81ff;">NaN
 </span></code></pre>
 <p>Stringifying <code>Infinity</code> can be a sensitive endeavor. String interpolation yeilds <code>&quot;Infinity&quot;</code>, while JSON stringifying strangely yields <code>&quot;null&quot;</code>. Pay attention to how your results are serialized.</p>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#66d9ef;">JSON</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">stringify</span><span style="color:#f8f8f2;">(</span><span style="color:#ae81ff;">Infinity</span><span style="color:#f8f8f2;">)
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#66d9ef;">JSON</span><span>.</span><span style="color:#66d9ef;">stringify</span><span>(</span><span style="color:#ae81ff;">Infinity</span><span>)
 </span><span style="color:#e6db74;">&quot;null&quot;
-
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#e6db74;">`${</span><span style="color:#ae81ff;">Infinity</span><span style="color:#e6db74;">}`
-&quot;Infinity&quot;
-</span></code></pre><h2 id="negative-zero"><a class="zola-anchor" href="#negative-zero" aria-label="Anchor link for: negative-zero">#</a>Negative zero</h2>
+</span><span style="color:#e6db74;">&quot;Infinity&quot;
+</span></code></pre>
+<h2 id="negative-zero"><a class="zola-anchor" href="#negative-zero" aria-label="Anchor link for: negative-zero">#</a>Negative zero</h2>
 <p>While its <a rel="noopener" target="_blank" href="https://math.stackexchange.com/questions/667577/does-negative-zero-exist">arguable whenter negative zero exists as a mathmatical concept</a>, it most definitely exists in Javascript. You can obtain negative zero through any multiplication or division operation with zero that would yeild a negative with any other number, and remove it by repeating the operation.</p>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">* -</span><span style="color:#ae81ff;">1
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">* -</span><span style="color:#ae81ff;">1
 </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">0
-
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">/ -</span><span style="color:#ae81ff;">1
 </span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">0
-
+</span><span>
 </span><span style="color:#f92672;">&gt; -</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">/ -</span><span style="color:#ae81ff;">1
-0
+</span><span style="color:#ae81ff;">0
 </span></code></pre>
 <p>Unlike infinity, the negative aspect of <code>-0</code> won't usually survive stringification.</p>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#66d9ef;">JSON</span><span style="color:#f8f8f2;">.</span><span style="color:#66d9ef;">stringify</span><span style="color:#f8f8f2;">(</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">0</span><span style="color:#f8f8f2;">);
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#66d9ef;">JSON</span><span>.</span><span style="color:#66d9ef;">stringify</span><span>(</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">0</span><span>);
 </span><span style="color:#e6db74;">&quot;0&quot;
-
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#e6db74;">`${</span><span style="color:#f92672;">-</span><span style="color:#ae81ff;">0</span><span style="color:#e6db74;">}`
-&quot;0&quot;
+</span><span style="color:#e6db74;">&quot;0&quot;
 </span></code></pre>
 <p>While I'm having a tough time replicating it, I have seen <code>-0</code> preserved in rendered html in a React application. If you happen to know of other situations where <code>-0</code> can be stringified, I'd be interested to hear.</p>
 <p><code>-0</code> has the odd property of being <em>strictly</em> equal to (positive) <code>0</code>. This makes it the only non-identity strictly equal relationship that I know about in JS. It can also make it hard to detect if you want to account for it in an edge case.</p>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">=== -</span><span style="color:#ae81ff;">0
-true
-
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">=== -</span><span style="color:#ae81ff;">0
+</span><span style="color:#ae81ff;">true
+</span><span>
 </span><span style="color:#f92672;">&gt; -</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">* -</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">=== </span><span style="color:#ae81ff;">0
-true
-
+</span><span style="color:#ae81ff;">true
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">* -</span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">=== </span><span style="color:#ae81ff;">0
-true
+</span><span style="color:#ae81ff;">true
 </span></code></pre>
 <p>If you do want to test for <code>-0</code>, you can use division to yield either <code>Infinity</code> or <code>-Infinity</code>.</p>
-<pre style="background-color:#272822;">
-<code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">=== </span><span style="color:#ae81ff;">Infinity
-true
-
+<pre data-lang="js" style="background-color:#272822;color:#f8f8f2;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ </span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">=== </span><span style="color:#ae81ff;">Infinity
+</span><span style="color:#ae81ff;">true
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ -</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">=== </span><span style="color:#ae81ff;">Infinity
-false
-
+</span><span style="color:#ae81ff;">false
+</span><span>
 </span><span style="color:#f92672;">&gt; </span><span style="color:#ae81ff;">1 </span><span style="color:#f92672;">/ -</span><span style="color:#ae81ff;">0 </span><span style="color:#f92672;">=== -</span><span style="color:#ae81ff;">Infinity
-true
+</span><span style="color:#ae81ff;">true
 </span></code></pre>
 <p>Next time a number mysteriously becomes negative in your algorithm, be sure to check the zeros.</p>
 

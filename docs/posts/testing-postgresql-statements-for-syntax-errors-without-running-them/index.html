@@ -58,31 +58,28 @@
 </div>
 
 <div class="body">
-  <pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#f8f8f2;">DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span style="color:#f8f8f2;"> RETURN;
-    </span><span style="color:#75715e;">-- &lt;Your code here&gt;
-</span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">; $TEST$;
+  <pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span>DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span> RETURN;
+</span><span>    </span><span style="color:#75715e;">-- &lt;Your code here&gt;
+</span><span style="color:#f92672;">END</span><span>; $TEST$;
 </span></code></pre>
 <p>The easiest way to test most SQL queries is to run them. Feedback is immediate. It's easy to rapidly iterate on results until the query returns what you're looking for.</p>
 <p>Sometimes you may only want to give your query a dry run. Maybe you're developing an insert statement that you'd rather not run every time to test. Maybe you're working on a parameterized query and don't want to think about test data. You should be able to test if your query is valid just as quickly as you test simple <code>SELECT</code> queries.</p>
 <p>The simple trick is to surround your statement in a short circuited <a rel="noopener" target="_blank" href="https://www.postgresql.org/docs/13/sql-do.html">anonymous code block</a>. This allows the query parser to read the full block of code as if it were to execute, without actually executing it. An immediate <code>RETURN</code> statement stops any of your code from executing.</p>
 <p>Let's test it out:</p>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#f8f8f2;">DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span style="color:#f8f8f2;"> RETURN;
-  </span><span style="color:#f92672;">INSERT</span><span style="color:#f8f8f2;"> INO users (id, email) </span><span style="color:#f92672;">VALUES</span><span style="color:#f8f8f2;"> ($</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, $</span><span style="color:#ae81ff;">2</span><span style="color:#f8f8f2;">);
-</span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">; $TEST$;
-
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span>DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span> RETURN;
+</span><span>  </span><span style="color:#f92672;">INSERT</span><span> INO users (id, email) </span><span style="color:#f92672;">VALUES</span><span> ($</span><span style="color:#ae81ff;">1</span><span>, $</span><span style="color:#ae81ff;">2</span><span>);
+</span><span style="color:#f92672;">END</span><span>; $TEST$;
+</span><span>
 </span><span style="color:#75715e;">-- Query 1 ERROR: ERROR:  syntax error at or near &quot;INO&quot;
--- LINE 2:   INSERT INO users (id, email) VALUES ($1, $2);
---                  ^
+</span><span style="color:#75715e;">-- LINE 2:   INSERT INO users (id, email) VALUES ($1, $2);
+</span><span style="color:#75715e;">--                  ^
 </span></code></pre>
 <p>Here we are able to check an insert statement for syntax errors. We didn't need to worry about side effects from testing our statement. We also didn't have to supply it with example parameters. Instead the parser helpfully pointed out our error.</p>
 <p>Now that we know what's wrong, let's see what happens when our syntax is correct:</p>
-<pre style="background-color:#272822;">
-<code class="language-sql" data-lang="sql"><span style="color:#f8f8f2;">DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span style="color:#f8f8f2;"> RETURN;
-  </span><span style="color:#f92672;">INSERT INTO</span><span style="color:#f8f8f2;"> accounts (id, email) </span><span style="color:#f92672;">VALUES</span><span style="color:#f8f8f2;"> ($</span><span style="color:#ae81ff;">1</span><span style="color:#f8f8f2;">, $</span><span style="color:#ae81ff;">2</span><span style="color:#f8f8f2;">);
-</span><span style="color:#f92672;">END</span><span style="color:#f8f8f2;">; $TEST$;
-
+<pre data-lang="sql" style="background-color:#272822;color:#f8f8f2;" class="language-sql "><code class="language-sql" data-lang="sql"><span>DO $TEST$ </span><span style="color:#f92672;">BEGIN</span><span> RETURN;
+</span><span>  </span><span style="color:#f92672;">INSERT INTO</span><span> accounts (id, email) </span><span style="color:#f92672;">VALUES</span><span> ($</span><span style="color:#ae81ff;">1</span><span>, $</span><span style="color:#ae81ff;">2</span><span>);
+</span><span style="color:#f92672;">END</span><span>; $TEST$;
+</span><span>
 </span><span style="color:#75715e;">-- Query 1 OK: DO
 </span></code></pre>
 <p>The <code>OK: DO</code> result returned informs us that our statement executed without a hitch. What it doesn't know is that only the <code>RETURN</code> statement at the head executed. While the rest of our syntax was correct, none of it actually ran.</p>
