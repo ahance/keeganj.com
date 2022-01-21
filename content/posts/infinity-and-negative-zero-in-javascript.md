@@ -64,7 +64,7 @@ Stringifying `Infinity` can be a sensitive endeavor. String interpolation yeilds
 
 ## Negative zero
 
-While its [arguable whenter negative zero exists as a mathmatical concept](https://math.stackexchange.com/questions/667577/does-negative-zero-exist), it most definitely exists in Javascript. You can obtain negative zero through any multiplication or division operation with zero that would yeild a negative with any other number, and remove it by repeating the operation.
+While its [arguable whether negative zero exists as a mathmatical concept](https://math.stackexchange.com/questions/667577/does-negative-zero-exist), it most definitely exists in Javascript. You can obtain negative zero through any multiplication or division operation with zero that would yeild a negative with any other number, and remove it by repeating the operation.
 
 ```js
 > 0 * -1
