@@ -32,7 +32,7 @@ NaN
 NaN
 ```
 
-`Infinity` also has it's mirror, `-Infinity` (Or [`Number.NEGATIVE_INFINITY`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY) if you'd rather not trust the negative sign next to a constant). Handy when you're doing comparisons in the negative direciton.
+`Infinity` also has it's mirror, `-Infinity` (Or [`Number.NEGATIVE_INFINITY`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NEGATIVE_INFINITY) if you'd rather not trust the negative sign next to a constant). Handy when you're doing comparisons in the negative direction.
 
 ```js
 > -1 / 0
@@ -52,7 +52,7 @@ Infinity
 NaN
 ```
 
-Stringifying `Infinity` can be a sensitive endeavor. String interpolation yeilds `"Infinity"`, while JSON stringifying strangely yields `"null"`. Pay attention to how your results are serialized.
+Stringifying `Infinity` can be a sensitive endeavor. String interpolation yields `"Infinity"`, while JSON stringifying strangely yields `"null"`. Pay attention to how your results are serialized.
 
 ```js
 > JSON.stringify(Infinity)
@@ -64,7 +64,7 @@ Stringifying `Infinity` can be a sensitive endeavor. String interpolation yeilds
 
 ## Negative zero
 
-While its [arguable whenter negative zero exists as a mathmatical concept](https://math.stackexchange.com/questions/667577/does-negative-zero-exist), it most definitely exists in Javascript. You can obtain negative zero through any multiplication or division operation with zero that would yeild a negative with any other number, and remove it by repeating the operation.
+While its [arguable whether negative zero exists as a mathmatical concept](https://math.stackexchange.com/questions/667577/does-negative-zero-exist), it most definitely exists in Javascript. You can obtain negative zero through any multiplication or division operation with zero that would yield a negative with any other number, and remove it by repeating the operation.
 
 ```js
 > 0 * -1
